@@ -8,7 +8,7 @@ namespace Project.Runtime.Scripts
         [SerializeField] private Transform _whiteKeysParent;
         [SerializeField] private Transform _blackKeysParent;
 
-        private const int STARTING_MIDI_NOTE = 21; // 33
+        private const int STARTING_MIDI_NOTE = 33; // 21
         private const int WHITE_KEYS_COUNT = 60;
         private const int BLACK_KEYS_COUNT = 42;
 
