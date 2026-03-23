@@ -11,7 +11,7 @@ namespace Project.Runtime.Scripts
         private Vector3 _originalPosition;
         private bool _isPlaying;
         
-        private const float PRESS_DEPTH = 0.01f;
+        private const float PRESS_DEPTH = 0.005f;
         private const float ANIMATION_DURATION = 0.1f;
         private const float FADE_OUT_DURATION = 0.15f;
 
