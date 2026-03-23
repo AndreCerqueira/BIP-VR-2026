@@ -11,19 +11,20 @@ namespace Project.Runtime.Scripts
 
         [Header("UI & Visuals")]
         [SerializeField] private GameObject _noteLabelPrefab;
-        [SerializeField] private Color _colorC = Color.red;
+        [SerializeField] private Color _colorC = Color.green;
         [SerializeField] private Color _colorD = new Color(1f, 0.5f, 0f);
-        [SerializeField] private Color _colorE = Color.yellow;
-        [SerializeField] private Color _colorF = Color.green;
-        [SerializeField] private Color _colorG = Color.blue;
-        [SerializeField] private Color _colorA = new Color(0.29f, 0f, 0.51f);
-        [SerializeField] private Color _colorB = new Color(0.93f, 0.51f, 0.93f);
+        [SerializeField] private Color _colorE = new Color(0.5f, 0f, 0.5f);
+        [SerializeField] private Color _colorF = Color.yellow;
+        [SerializeField] private Color _colorG = Color.red;
+        [SerializeField] private Color _colorA = Color.blue;
+        [SerializeField] private Color _colorB = new Color(0.6f, 0.3f, 0f);
 
-        private const int STARTING_MIDI_NOTE = 33;
+        private const int STARTING_MIDI_NOTE = 21;
         private const int WHITE_KEYS_COUNT = 60;
         private const int BLACK_KEYS_COUNT = 42;
         private const int CENTRAL_OCTAVE_START = 60;
         private const int CENTRAL_OCTAVE_END = 83;
+        private const int NOTES_PER_OCTAVE = 12;
 
         private readonly string[] _whiteNoteNames = { "A", "B", "C", "D", "E", "F", "G" };
         private readonly int[] _whiteNoteOffsets = { 0, 2, 3, 5, 7, 8, 10 };
@@ -54,9 +55,10 @@ namespace Project.Runtime.Scripts
                 var noteName = names[noteIndex];
                 var midiOffset = offsets[noteIndex];
                 
-                var midiNote = STARTING_MIDI_NOTE + (octave * 12) + midiOffset;
+                var midiNote = STARTING_MIDI_NOTE + (octave * NOTES_PER_OCTAVE) + midiOffset;
+                var midiOctave = (midiNote / NOTES_PER_OCTAVE) - 1;
                 
-                keyTransform.gameObject.name = $"Key_{noteName}{octave}";
+                keyTransform.gameObject.name = $"Key_{noteName}{midiOctave}";
                 
                 var keyView = keyTransform.gameObject.AddComponent<KeyView>();
                 var isCentral = midiNote >= CENTRAL_OCTAVE_START && midiNote <= CENTRAL_OCTAVE_END;
@@ -64,13 +66,11 @@ namespace Project.Runtime.Scripts
                 if (isCentral && isWhiteKey)
                 {
                     var keyColor = GetColorForNote(noteName);
-                    keyView.Initialize(midiNote);
-                    CreateNoteLabel(keyTransform, noteName);
+                    keyView.Initialize(midiNote, keyColor, true, isWhiteKey);
+                    CreateNoteLabel(keyTransform, $"{noteName}{midiOctave}", keyColor);
                 }
                 else
-                {
-                    keyView.Initialize(midiNote);
-                }
+                    keyView.Initialize(midiNote, Color.white, false, isWhiteKey);
             }
         }
 
@@ -89,7 +89,7 @@ namespace Project.Runtime.Scripts
             }
         }
 
-        private void CreateNoteLabel(Transform parent, string text)
+        private void CreateNoteLabel(Transform parent, string text, Color color)
         {
             if (_noteLabelPrefab == null) return;
             
@@ -98,6 +98,7 @@ namespace Project.Runtime.Scripts
             if (textComponent == null) return;
             
             textComponent.text = text;
+            //textComponent.color = color;
         }
     }
 }
