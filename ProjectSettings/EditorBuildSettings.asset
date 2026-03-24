@@ -5,9 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Runtime/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Project/Runtime/Scenes/VRMeta/MetaTesting.unity
+    guid: 865f212044ea67d40b9ae04ba3b0acb0
+  - enabled: 0
+    path: Assets/Project/External/MetaSamples/MRUKSamples/BouncingBall/BouncingBall.unity
+    guid: 8f96b0c0fd5605a4f8477abdb8e65436
+  - enabled: 0
+    path: Assets/Project/External/MetaSamples/MRUKSamples/MultiSpawn/FindMultiSpawn.unity
+    guid: 2c7c1aaff481cd1458b64e16d038f041
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 0c31feb46745ca7428ef29cf71a1b414, type: 2}
