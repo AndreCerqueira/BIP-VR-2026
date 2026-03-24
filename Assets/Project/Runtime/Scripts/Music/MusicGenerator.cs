@@ -24,21 +24,51 @@ namespace Project.Runtime.Scripts.Music
         {
             if (_musicData == null) return;
 
-            // TwinkleTwinkle
-            var notes = new List<SheetNote>
+            var allNotes = new List<SheetNote>();
+
+            allNotes.AddRange(GetPartA());
+            allNotes.AddRange(GetPartB());
+            
+            allNotes.AddRange(GetPartC());
+            allNotes.AddRange(GetPartC());
+            
+            allNotes.AddRange(GetPartA());
+            allNotes.AddRange(GetPartB());
+
+            _musicData.GenerateMeasures(allNotes);
+        }
+
+        private IEnumerable<SheetNote> GetPartA()
+        {
+            return new List<SheetNote>
             {
                 new SheetNote(C4, QUARTER), new SheetNote(C4, QUARTER),
                 new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
                 new SheetNote(A4, QUARTER), new SheetNote(A4, QUARTER),
-                new SheetNote(G4, HALF),
-                
+                new SheetNote(G4, HALF)
+            };
+        }
+
+        private IEnumerable<SheetNote> GetPartB()
+        {
+            return new List<SheetNote>
+            {
                 new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
                 new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
                 new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
                 new SheetNote(C4, HALF)
             };
-            
-            _musicData.GenerateMeasures(notes);
+        }
+
+        private IEnumerable<SheetNote> GetPartC()
+        {
+            return new List<SheetNote>
+            {
+                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(D4, HALF)
+            };
         }
     }
 }

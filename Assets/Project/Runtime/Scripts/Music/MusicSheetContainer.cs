@@ -12,10 +12,12 @@ namespace Project.Runtime.Scripts.UI
 
         [Header("References")]
         [SerializeField] private GameObject _staffPrefab;
-        [SerializeField] private Transform _staffsParent;
+        [SerializeField] private Transform _leftPageParent;
+        [SerializeField] private Transform _rightPageParent;
 
         [Header("Layout & Spacing")]
         [SerializeField] private int _measuresPerStaff = 4;
+        [SerializeField] private int _staffsPerPage = 3;
         [SerializeField] private float _staffSpacingY = -5f;
 
         [Header("Global Offsets")]
@@ -25,6 +27,9 @@ namespace Project.Runtime.Scripts.UI
         private void Start()
         {
             if (_musicData == null) return;
+            if (_leftPageParent == null) return;
+            if (_rightPageParent == null) return;
+            
             BuildSheet();
         }
 
@@ -33,13 +38,17 @@ namespace Project.Runtime.Scripts.UI
             var totalMeasures = _musicData.Measures;
             var currentMeasureIndex = 0;
             var staffCount = 0;
+            var maxStaffs = _staffsPerPage * 2;
 
-            while (currentMeasureIndex < totalMeasures.Count)
+            while (currentMeasureIndex < totalMeasures.Count && staffCount < maxStaffs)
             {
-                var staffObj = Instantiate(_staffPrefab, _staffsParent);
+                var targetParent = staffCount < _staffsPerPage ? _leftPageParent : _rightPageParent;
+                var staffObj = Instantiate(_staffPrefab, targetParent);
                 
+                var localStaffIndex = staffCount % _staffsPerPage;
                 var posX = _startOffsetX;
-                var posY = _startOffsetY + (staffCount * _staffSpacingY);
+                var posY = _startOffsetY + (localStaffIndex * _staffSpacingY);
+                
                 staffObj.transform.localPosition = new Vector3(posX, posY, 0f);
                 
                 var staffView = staffObj.GetComponent<StaffView>();
@@ -51,7 +60,7 @@ namespace Project.Runtime.Scripts.UI
                     currentMeasureIndex++;
                 }
 
-                staffView.SetupStaff(measuresForThisStaff);
+                staffView.SetupStaff(measuresForThisStaff, _musicData.BeatsPerMeasure);
                 staffCount++;
             }
         }
