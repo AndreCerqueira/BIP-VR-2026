@@ -34,8 +34,10 @@ namespace Project.Runtime.Scripts.UI
 
         private const int REFERENCE_MIDI_C4 = 60;
 
-        public void SetupStaff(IEnumerable<Measure> measures, int beatsPerMeasure)
+        public IReadOnlyList<SheetNoteView> SetupStaff(IEnumerable<Measure> measures, int beatsPerMeasure)
         {
+            var spawnedNotes = new List<SheetNoteView>();
+            
             if (beatsPerMeasure <= 0)
                 beatsPerMeasure = 4;
 
@@ -50,7 +52,11 @@ namespace Project.Runtime.Scripts.UI
                 foreach (var note in measure.Notes)
                 {
                     var noteX = measureStartX + (currentBeat * _beatSpacingX);
-                    CreateNote(note, noteX);
+                    var noteView = CreateNote(note, noteX);
+                    
+                    if (noteView != null)
+                        spawnedNotes.Add(noteView);
+                        
                     currentBeat += note.Duration;
                 }
                 
@@ -59,27 +65,31 @@ namespace Project.Runtime.Scripts.UI
                 CreateBarLine(currentX);
                 currentX += _measureSpacingX;
             }
+            
+            return spawnedNotes;
         }
 
-        private void CreateNote(SheetNote note, float xPos)
+        private SheetNoteView CreateNote(SheetNote note, float xPos)
         {
-            if (_notePrefab == null) return;
+            if (_notePrefab == null) return null;
 
             var noteObj = Instantiate(_notePrefab, _container);
             var yPos = CalculateNoteY(note);
             noteObj.transform.localPosition = new Vector3(xPos, yPos, 0f);
             
             var view = noteObj.GetComponent<SheetNoteView>();
-            if (view != null)
-                view.Initialize(note, _noteWidthMultiplier, _noteHeightMultiplier);
+            TMP_Text labelComponent = null;
 
             if (!note.IsRest && _labelPrefab != null)
-            {
-                CreatePitchLabel(xPos, note.MidiNote);
-            }
+                labelComponent = CreatePitchLabel(xPos, note.MidiNote);
+
+            if (view != null)
+                view.Initialize(note, labelComponent, _noteWidthMultiplier, _noteHeightMultiplier);
+
+            return view;
         }
 
-        private void CreatePitchLabel(float xPos, int midiNote)
+        private TMP_Text CreatePitchLabel(float xPos, int midiNote)
         {
             var labelObj = Instantiate(_labelPrefab, _container);
             
@@ -88,9 +98,9 @@ namespace Project.Runtime.Scripts.UI
 
             var textComponent = labelObj.GetComponentInChildren<TextMeshProUGUI>();
             if (textComponent != null)
-            {
                 textComponent.text = MidiHelper.MidiToName(midiNote);
-            }
+                
+            return textComponent;
         }
 
         private void CreateBarLine(float xPos)
@@ -116,6 +126,7 @@ namespace Project.Runtime.Scripts.UI
             var noteInOctave = Mathf.Abs(midiDiff % 12);
             var steps = new[] { 0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6 };
             var baseStep = (octave * 7) + steps[noteInOctave];
+            
             return midiDiff < 0 ? -baseStep : baseStep;
         }
     }

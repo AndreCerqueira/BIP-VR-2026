@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Project.Runtime.Scripts.Piano
     [RequireComponent(typeof(AudioSource))]
     public class KeyView : MonoBehaviour
     {
+        public static event Action<int> OnNotePlayed;
+
         public int MidiNote { get; private set; }
         public bool IsWhiteKey { get; private set; }
         public string NoteName { get; private set; }
@@ -124,6 +127,8 @@ namespace Project.Runtime.Scripts.Piano
                 _renderer.material.DOKill();
                 _renderer.material.DOColor(_pressedColor, ANIMATION_DURATION);
             }
+
+            OnNotePlayed?.Invoke(MidiNote);
         }
         
         private void ReleaseKey()

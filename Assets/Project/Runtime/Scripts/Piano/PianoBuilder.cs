@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Project.Runtime.Scripts.Music.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -12,13 +13,7 @@ namespace Project.Runtime.Scripts.Piano
 
         [Header("UI & Visuals")]
         [SerializeField] private GameObject _noteLabelPrefab;
-        [SerializeField] private Color _colorC = Color.green;
-        [SerializeField] private Color _colorD = new Color(1f, 0.5f, 0f);
-        [SerializeField] private Color _colorE = new Color(0.5f, 0f, 0.5f);
-        [SerializeField] private Color _colorF = Color.yellow;
-        [SerializeField] private Color _colorG = Color.red;
-        [SerializeField] private Color _colorA = Color.blue;
-        [SerializeField] private Color _colorB = new Color(0.6f, 0.3f, 0f);
+        [SerializeField] private NoteColorSchemeSO _colorScheme;
 
         private const int STARTING_MIDI_NOTE = 21;
         private const int WHITE_KEYS_COUNT = 60;
@@ -100,17 +95,8 @@ namespace Project.Runtime.Scripts.Piano
 
         private Color GetColorForNote(string noteName)
         {
-            switch (noteName)
-            {
-                case "C": return _colorC;
-                case "D": return _colorD;
-                case "E": return _colorE;
-                case "F": return _colorF;
-                case "G": return _colorG;
-                case "A": return _colorA;
-                case "B": return _colorB;
-                default: return Color.white;
-            }
+            if (_colorScheme == null) return Color.white;
+            return _colorScheme.GetColorFromName(noteName);
         }
     }
 }
