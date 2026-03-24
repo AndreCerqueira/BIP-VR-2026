@@ -1,37 +1,39 @@
-﻿using UnityEngine;
-using Project.Runtime.Scripts.Music;
-using Project.Runtime.Scripts.Music.Data;
+﻿using Project.Runtime.Scripts.Music.Data;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Project.Runtime.Scripts.UI
+namespace Project.Runtime.Scripts.Music
 {
     public class SheetNoteView : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Image _image;
 
         private SheetNote _data;
         private Vector2 _baseSize;
 
         private void Awake()
         {
-            if (_spriteRenderer == null) return;
+            if (_image == null) return;
             
-            _baseSize = _spriteRenderer.size;
+            _baseSize = _image.rectTransform.sizeDelta;
         }
 
         public void Initialize(SheetNote data, float widthMultiplier = 1f, float heightMultiplier = 1f)
         {
             _data = data;
             
-            if (_spriteRenderer != null)
-                _spriteRenderer.size = new Vector2(_baseSize.x * widthMultiplier, _baseSize.y * heightMultiplier);
+            UpdateSprite();
             
-            if (_data.IsRest)
-                HandleRestVisualization();
+            if (_image != null)
+                _image.rectTransform.sizeDelta = new Vector2(_baseSize.x * widthMultiplier, _baseSize.y * heightMultiplier);
         }
 
-        private void HandleRestVisualization()
+        private void UpdateSprite()
         {
-            gameObject.SetActive(!_data.IsRest);
+            if (_image == null) return;
+            if (NotationSpriteProvider.Instance == null) return;
+
+            _image.sprite = NotationSpriteProvider.Instance.GetSprite(_data.Duration, _data.IsRest);
         }
     }
 }

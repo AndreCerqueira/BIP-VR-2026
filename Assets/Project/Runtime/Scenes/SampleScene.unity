@@ -556,6 +556,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1497700330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497700331}
+  - component: {fileID: 1497700332}
+  m_Layer: 0
+  m_Name: NotationSpriteProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1497700331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497700330}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.53788, y: 0, z: -0.51935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1886403880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1497700332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497700330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1578fb7cfc47069ca00af3d5ffdbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.NotationSpriteProvider
+  _wholeNote: {fileID: 21300000, guid: b2c0486544b8fb546989e93b6856bcc8, type: 3}
+  _halfNote: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _quarterNote: {fileID: 21300000, guid: 0a0437e295b50a3478ad50d4f1110533, type: 3}
+  _eighthNote: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _sixteenthNote: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _wholeRest: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _halfRest: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _quarterRest: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _eighthRest: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
+  _sixteenthRest: {fileID: 21300000, guid: faa2170446683fd429837b57201d90b4, type: 3}
 --- !u!1 &1886403879
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 410642689}
+  - {fileID: 1497700331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2248551186247626207
@@ -644,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 8639643280280568293, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

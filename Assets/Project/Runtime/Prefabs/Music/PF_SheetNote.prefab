@@ -88,3 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4ab98d04a94642883522335743d654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.SheetNoteView
+  _image: {fileID: 5339094553659114888}

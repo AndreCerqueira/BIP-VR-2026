@@ -90,12 +90,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.StaffView
   _notePrefab: {fileID: 2553541756207087366, guid: 62448d18ef3d5694d8f740b26790c62f, type: 3}
   _barLinePrefab: {fileID: 6409062018824116784, guid: 079f1ba013c575e45aba4a0669867465, type: 3}
+  _labelPrefab: {fileID: 427797829842904046, guid: 0889d35e21a833443b3d74a389855a93, type: 3}
   _container: {fileID: 264752020842154745}
   _beatSpacingX: 10.5
   _measureSpacingX: 6
   _stepY: 1.53
   _startXOffset: -85
-  _startYOffset: 7.1
+  _startYOffset: 7.25
   _barLineOffsetY: 7
+  _labelFixedYOffset: 25
   _noteWidthMultiplier: 1
   _noteHeightMultiplier: 1

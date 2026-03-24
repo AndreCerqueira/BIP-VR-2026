@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Project.Runtime.Scripts.Music.Data;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
-namespace Project.Runtime.Scripts.Music
+namespace Project.Runtime.Scripts.Music.Utils
 {
     public class MusicGenerator : MonoBehaviour
     {
@@ -36,6 +37,17 @@ namespace Project.Runtime.Scripts.Music
             allNotes.AddRange(GetPartB());
 
             _musicData.GenerateMeasures(allNotes);
+            
+            SaveMusicData();
+        }
+
+        private void SaveMusicData()
+        {
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(_musicData);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+#endif
         }
 
         private IEnumerable<SheetNote> GetPartA()

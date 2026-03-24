@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using Project.Runtime.Scripts.Music;
+using UnityEngine;
 using Project.Runtime.Scripts.Music.Data;
+using Project.Runtime.Scripts.Music.Utils;
+using TMPro;
 
 namespace Project.Runtime.Scripts.UI
 {
@@ -10,6 +12,7 @@ namespace Project.Runtime.Scripts.UI
         [Header("Prefabs")]
         [SerializeField] private GameObject _notePrefab;
         [SerializeField] private GameObject _barLinePrefab;
+        [SerializeField] private GameObject _labelPrefab;
         [SerializeField] private Transform _container;
 
         [Header("Spacing Settings")]
@@ -21,6 +24,9 @@ namespace Project.Runtime.Scripts.UI
         [SerializeField] private float _startXOffset = 0f;
         [SerializeField] private float _startYOffset = 0f;
         [SerializeField] private float _barLineOffsetY = 0f;
+
+        [Header("Label Settings")]
+        [SerializeField] private float _labelFixedYOffset = 2.0f;
 
         [Header("Note Sizing")]
         [SerializeField] private float _noteWidthMultiplier = 1f;
@@ -66,6 +72,25 @@ namespace Project.Runtime.Scripts.UI
             var view = noteObj.GetComponent<SheetNoteView>();
             if (view != null)
                 view.Initialize(note, _noteWidthMultiplier, _noteHeightMultiplier);
+
+            if (!note.IsRest && _labelPrefab != null)
+            {
+                CreatePitchLabel(xPos, note.MidiNote);
+            }
+        }
+
+        private void CreatePitchLabel(float xPos, int midiNote)
+        {
+            var labelObj = Instantiate(_labelPrefab, _container);
+            
+            var yPos = _startYOffset + _labelFixedYOffset;
+            labelObj.transform.localPosition = new Vector3(xPos, yPos, 0f);
+
+            var textComponent = labelObj.GetComponentInChildren<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = MidiHelper.MidiToName(midiNote);
+            }
         }
 
         private void CreateBarLine(float xPos)

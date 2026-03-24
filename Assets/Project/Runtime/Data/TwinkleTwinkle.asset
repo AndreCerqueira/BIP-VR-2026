@@ -61,3 +61,95 @@ MonoBehaviour:
     - _midiNote: 60
       _duration: 2
       _isRest: 0
+  - _notes:
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 62
+      _duration: 2
+      _isRest: 0
+  - _notes:
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 62
+      _duration: 2
+      _isRest: 0
+  - _notes:
+    - _midiNote: 60
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 60
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 69
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 69
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 2
+      _isRest: 0
+  - _notes:
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 62
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 62
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 60
+      _duration: 2
+      _isRest: 0

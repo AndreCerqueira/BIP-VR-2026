@@ -1,8 +1,8 @@
-using Project.Runtime.Scripts.Piano;
-using TMPro;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Project.Runtime.Scripts
+namespace Project.Runtime.Scripts.Piano
 {
     public class PianoBuilder : MonoBehaviour
     {
@@ -23,8 +23,6 @@ namespace Project.Runtime.Scripts
         private const int STARTING_MIDI_NOTE = 21;
         private const int WHITE_KEYS_COUNT = 60;
         private const int BLACK_KEYS_COUNT = 42;
-        private const int CENTRAL_OCTAVE_START = 60;
-        private const int CENTRAL_OCTAVE_END = 83;
         private const int NOTES_PER_OCTAVE = 12;
 
         private readonly string[] _whiteNoteNames = { "A", "B", "C", "D", "E", "F", "G" };
@@ -33,6 +31,8 @@ namespace Project.Runtime.Scripts
         private readonly string[] _blackNoteNames = { "As", "Cs", "Ds", "Fs", "Gs" };
         private readonly int[] _blackNoteOffsets = { 1, 4, 6, 9, 11 };
 
+        private readonly List<KeyView> _allKeys = new List<KeyView>();
+
         private void Awake()
         {
             if (_whiteKeysParent == null) return;
@@ -40,6 +40,20 @@ namespace Project.Runtime.Scripts
             
             BuildKeys(_whiteKeysParent, WHITE_KEYS_COUNT, _whiteNoteNames, _whiteNoteOffsets, 7, true);
             BuildKeys(_blackKeysParent, BLACK_KEYS_COUNT, _blackNoteNames, _blackNoteOffsets, 5, false);
+            
+            LoadOneOctave();
+        }
+
+        [Button("Load One Octave (C4 - B4)")]
+        public void LoadOneOctave()
+        {
+            UpdateHighlights(60, 71);
+        }
+
+        [Button("Load Two Octaves (C4 - B5)")]
+        public void LoadTwoOctaves()
+        {
+            UpdateHighlights(60, 83);
         }
 
         private void BuildKeys(Transform parent, int expectedCount, string[] names, int[] offsets, int notesPerOctave, bool isWhiteKey)
@@ -62,16 +76,25 @@ namespace Project.Runtime.Scripts
                 keyTransform.gameObject.name = $"Key_{noteName}{midiOctave}";
                 
                 var keyView = keyTransform.gameObject.AddComponent<KeyView>();
-                var isCentral = midiNote >= CENTRAL_OCTAVE_START && midiNote <= CENTRAL_OCTAVE_END;
+                keyView.Initialize(midiNote, isWhiteKey, noteName, $"{noteName}{midiOctave}");
                 
-                if (isCentral && isWhiteKey)
+                _allKeys.Add(keyView);
+            }
+        }
+
+        private void UpdateHighlights(int startMidi, int endMidi)
+        {
+            foreach (var key in _allKeys)
+            {
+                var isCentral = key.MidiNote >= startMidi && key.MidiNote <= endMidi;
+                
+                if (isCentral && key.IsWhiteKey)
                 {
-                    var keyColor = GetColorForNote(noteName);
-                    keyView.Initialize(midiNote, keyColor, true, isWhiteKey);
-                    CreateNoteLabel(keyTransform, $"{noteName}{midiOctave}", keyColor);
+                    var keyColor = GetColorForNote(key.NoteName);
+                    key.SetHighlight(true, keyColor, _noteLabelPrefab);
                 }
                 else
-                    keyView.Initialize(midiNote, Color.white, false, isWhiteKey);
+                    key.SetHighlight(false, Color.white);
             }
         }
 
@@ -88,18 +111,6 @@ namespace Project.Runtime.Scripts
                 case "B": return _colorB;
                 default: return Color.white;
             }
-        }
-
-        private void CreateNoteLabel(Transform parent, string text, Color color)
-        {
-            if (_noteLabelPrefab == null) return;
-            
-            var labelInstance = Instantiate(_noteLabelPrefab, parent);
-            var textComponent = labelInstance.GetComponentInChildren<TMP_Text>();
-            if (textComponent == null) return;
-            
-            textComponent.text = text;
-            //textComponent.color = color;
         }
     }
 }
