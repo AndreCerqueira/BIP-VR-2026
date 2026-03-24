@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Project.Runtime.Scripts
+namespace Project.Runtime.Scripts.Piano
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(AudioSource))]
@@ -62,6 +62,16 @@ namespace Project.Runtime.Scripts
 
         private void OnMouseDown()
         {
+            PressKey();
+        }
+
+        private void OnMouseExit()
+        {
+            ReleaseKey();
+        }
+
+        public void PressKey()
+        {
             _isPlaying = true;
             
             _audioSource.DOKill();
@@ -77,13 +87,8 @@ namespace Project.Runtime.Scripts
                 _renderer.material.DOColor(_pressedColor, ANIMATION_DURATION);
             }
         }
-
-        private void OnMouseExit()
-        {
-            ReleaseKey();
-        }
-
-        private void ReleaseKey()
+        
+        public void ReleaseKey()
         {
             if (!_isPlaying) return;
             
