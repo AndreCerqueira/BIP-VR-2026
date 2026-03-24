@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Project.Runtime.Scripts.Piano
     public class KeyView : MonoBehaviour
     {
         public static event Action<int> OnNotePlayed;
+        public static readonly Dictionary<int, KeyView> ActiveKeys = new Dictionary<int, KeyView>();
 
         public int MidiNote { get; private set; }
         public bool IsWhiteKey { get; private set; }
@@ -25,7 +27,11 @@ namespace Project.Runtime.Scripts.Piano
         private bool _isPlaying;
         private bool _hasCustomColor;
         private float _pressDepth;
+        private float _currentGlowIntensity;
         private GameObject _currentLabel;
+        private Sequence _glowSequence;
+        
+        private static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
         
         private const float WHITE_KEY_PRESS_DEPTH = 0.01f;
         private const float BLACK_KEY_PRESS_DEPTH = 0.005f;
@@ -42,6 +48,12 @@ namespace Project.Runtime.Scripts.Piano
                 _defaultColor = _renderer.material.color;
         }
 
+        private void OnDestroy()
+        {
+            if (ActiveKeys.ContainsKey(MidiNote))
+                ActiveKeys.Remove(MidiNote);
+        }
+
         private void Update()
         {
             if (!_isPlaying) return;
@@ -56,6 +68,8 @@ namespace Project.Runtime.Scripts.Piano
             IsWhiteKey = isWhiteKey;
             NoteName = noteName;
             LabelText = labelText;
+            
+            ActiveKeys[midiNote] = this;
             
             _originalPosition = transform.localPosition;
             
@@ -98,6 +112,42 @@ namespace Project.Runtime.Scripts.Piano
                 var textComponent = _currentLabel.GetComponentInChildren<TMP_Text>();
                 if (textComponent != null)
                     textComponent.text = LabelText;
+            }
+        }
+
+        public void StartGlow(float duration, float minIntensity, float maxIntensity)
+        {
+            if (_renderer == null) return;
+
+            StopGlow();
+
+            _renderer.material.EnableKeyword("_EMISSION");
+            
+            _glowSequence = DOTween.Sequence();
+            
+            _currentGlowIntensity = minIntensity;
+            _renderer.material.SetColor(EmissionColorId, _originalColor * _currentGlowIntensity);
+
+            var tween = DOTween.To(() => _currentGlowIntensity, x => 
+                {
+                    _currentGlowIntensity = x;
+                    _renderer.material.SetColor(EmissionColorId, _originalColor * _currentGlowIntensity);
+                }, maxIntensity, duration)
+                .SetEase(Ease.InOutSine)
+                .SetLoops(-1, LoopType.Yoyo);
+
+            _glowSequence.Append(tween);
+        }
+
+        public void StopGlow()
+        {
+            if (_glowSequence != null && _glowSequence.IsPlaying())
+                _glowSequence.Kill();
+
+            if (_renderer != null)
+            {
+                _renderer.material.SetColor(EmissionColorId, Color.black);
+                _renderer.material.DisableKeyword("_EMISSION");
             }
         }
 

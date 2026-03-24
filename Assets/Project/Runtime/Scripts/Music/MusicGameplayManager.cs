@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using Project.Runtime.Scripts.Music;
 using Project.Runtime.Scripts.Music.Data;
 using Project.Runtime.Scripts.Music.Utils;
 using Project.Runtime.Scripts.Piano;
-using Project.Runtime.Scripts.UI;
 using UnityEngine;
 
-namespace Project.Runtime.Scripts.Gameplay
+namespace Project.Runtime.Scripts.Music
 {
     public class MusicGameplayManager : MonoBehaviour
     {
@@ -14,19 +12,23 @@ namespace Project.Runtime.Scripts.Gameplay
         [SerializeField] private MusicSheetContainer _sheetContainer;
         [SerializeField] private NoteColorSchemeSO _colorScheme;
 
+        [Header("Piano Glow Settings")]
+        [SerializeField] private float _glowDuration = 0.5f;
+        [SerializeField] private float _minGlowIntensity = 0.5f;
+        [SerializeField] private float _maxGlowIntensity = 3.5f;
+
         private int _currentNoteIndex;
         private IReadOnlyList<SheetNoteView> _notes;
 
         private void Start()
         {
-            if (_sheetContainer == null) return;
-            if (_colorScheme == null) return;
+            if (_sheetContainer == null || _colorScheme == null) return;
 
             _sheetContainer.BuildSheet();
             _notes = _sheetContainer.AllNotes;
             
             InitializeNotes();
-            HighlightCurrentNote();
+            HighlightAndAnimateCurrentNote();
         }
 
         private void OnEnable()
@@ -42,12 +44,12 @@ namespace Project.Runtime.Scripts.Gameplay
         private void InitializeNotes()
         {
             if (_notes == null) return;
-
+            
             foreach (var note in _notes)
                 note.SetColor(_colorScheme.DefaultColor);
         }
 
-        private void HighlightCurrentNote()
+        private void HighlightAndAnimateCurrentNote()
         {
             if (_notes == null) return;
 
@@ -57,24 +59,32 @@ namespace Project.Runtime.Scripts.Gameplay
             if (_currentNoteIndex >= _notes.Count) return;
 
             var currentNote = _notes[_currentNoteIndex];
+            
             var baseName = MidiHelper.MidiToBaseNoteName(currentNote.MidiNote);
             var targetColor = _colorScheme.GetColorFromName(baseName);
             
             currentNote.SetColor(targetColor);
+            currentNote.StartIdleAnimation();
+
+            if (KeyView.ActiveKeys.TryGetValue(currentNote.MidiNote, out var key))
+                key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
         }
 
         private void HandleNotePlayed(int midiNote)
         {
-            if (_notes == null) return;
-            if (_currentNoteIndex >= _notes.Count) return;
+            if (_notes == null || _currentNoteIndex >= _notes.Count) return;
 
             var currentNote = _notes[_currentNoteIndex];
-            
             if (currentNote.IsRest) return;
 
             if (currentNote.MidiNote == midiNote)
             {
+                currentNote.StopIdleAnimation();
                 currentNote.SetColor(_colorScheme.DefaultColor);
+                
+                if (KeyView.ActiveKeys.TryGetValue(midiNote, out var key))
+                    key.StopGlow();
+                
                 AdvanceToNextNote();
             }
         }
@@ -82,7 +92,7 @@ namespace Project.Runtime.Scripts.Gameplay
         private void AdvanceToNextNote()
         {
             _currentNoteIndex++;
-            HighlightCurrentNote();
+            HighlightAndAnimateCurrentNote();
         }
     }
 }
