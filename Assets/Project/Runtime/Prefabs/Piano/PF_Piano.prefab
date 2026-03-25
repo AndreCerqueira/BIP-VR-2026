@@ -4162,7 +4162,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -11557,13 +11557,7 @@ MonoBehaviour:
   _whiteKeysParent: {fileID: 6268353103830662845}
   _blackKeysParent: {fileID: 6374953247451371987}
   _noteLabelPrefab: {fileID: 4392192051261447497, guid: 75e706e560d77bf418d4984164288346, type: 3}
-  _colorC: {r: 0.9254902, g: 0.28235295, b: 0.23529412, a: 1}
-  _colorD: {r: 0.9137255, g: 0.6075885, b: 0.12941176, a: 1}
-  _colorE: {r: 0.88235295, g: 0.8666667, b: 0, a: 1}
-  _colorF: {r: 0.4117647, g: 0.90588236, b: 0.23137255, a: 1}
-  _colorG: {r: 0.33333334, g: 0.88235295, b: 0.83137256, a: 1}
-  _colorA: {r: 0.3882353, g: 0.64705884, b: 0.9529412, a: 1}
-  _colorB: {r: 0.69803923, g: 0.36078432, b: 0.94509804, a: 1}
+  _colorScheme: {fileID: 11400000, guid: ef41d4522698da344b89226794096a5b, type: 2}
 --- !u!1 &4773379524467324391
 GameObject:
   m_ObjectHideFlags: 0

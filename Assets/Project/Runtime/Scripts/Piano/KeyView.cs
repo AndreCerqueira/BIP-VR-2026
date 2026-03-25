@@ -1,4 +1,7 @@
-﻿using DG.Tweening;
+﻿using System;
+using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Project.Runtime.Scripts.Piano
@@ -7,14 +10,28 @@ namespace Project.Runtime.Scripts.Piano
     [RequireComponent(typeof(AudioSource))]
     public class KeyView : MonoBehaviour
     {
+        public static event Action<int> OnNotePlayed;
+        public static readonly Dictionary<int, KeyView> ActiveKeys = new Dictionary<int, KeyView>();
+
+        public int MidiNote { get; private set; }
+        public bool IsWhiteKey { get; private set; }
+        public string NoteName { get; private set; }
+        public string LabelText { get; private set; }
+
         private AudioSource _audioSource;
         private Renderer _renderer;
         private Vector3 _originalPosition;
+        private Color _defaultColor;
         private Color _originalColor;
         private Color _pressedColor;
         private bool _isPlaying;
         private bool _hasCustomColor;
         private float _pressDepth;
+        private float _currentGlowIntensity;
+        private GameObject _currentLabel;
+        private Sequence _glowSequence;
+        
+        private static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
         
         private const float WHITE_KEY_PRESS_DEPTH = 0.01f;
         private const float BLACK_KEY_PRESS_DEPTH = 0.005f;
@@ -26,6 +43,15 @@ namespace Project.Runtime.Scripts.Piano
         {
             _audioSource = GetComponent<AudioSource>();
             _renderer = GetComponent<Renderer>();
+            
+            if (_renderer != null)
+                _defaultColor = _renderer.material.color;
+        }
+
+        private void OnDestroy()
+        {
+            if (ActiveKeys.ContainsKey(MidiNote))
+                ActiveKeys.Remove(MidiNote);
         }
 
         private void Update()
@@ -36,28 +62,93 @@ namespace Project.Runtime.Scripts.Piano
                 ReleaseKey();
         }
 
-        public void Initialize(int midiNote, Color customColor, bool applyColor, bool isWhiteKey)
+        public void Initialize(int midiNote, bool isWhiteKey, string noteName, string labelText)
         {
+            MidiNote = midiNote;
+            IsWhiteKey = isWhiteKey;
+            NoteName = noteName;
+            LabelText = labelText;
+            
+            ActiveKeys[midiNote] = this;
+            
             _originalPosition = transform.localPosition;
-            _hasCustomColor = applyColor;
             
             if (isWhiteKey)
                 _pressDepth = WHITE_KEY_PRESS_DEPTH;
             else
                 _pressDepth = BLACK_KEY_PRESS_DEPTH;
             
-            if (_hasCustomColor && _renderer != null)
-            {
-                _renderer.material.color = customColor;
-                _originalColor = customColor;
-                _pressedColor = new Color(customColor.r * DARKEN_FACTOR, customColor.g * DARKEN_FACTOR, customColor.b * DARKEN_FACTOR, customColor.a);
-            }
-            
             var clip = PianoSoundGenerator.CreateTone(midiNote);
             if (clip == null) return;
             
             _audioSource.clip = clip;
             _audioSource.playOnAwake = false;
+        }
+
+        public void SetHighlight(bool applyColor, Color customColor, GameObject labelPrefab = null)
+        {
+            _hasCustomColor = applyColor;
+            
+            if (_renderer != null)
+            {
+                if (_hasCustomColor)
+                    _originalColor = customColor;
+                else
+                    _originalColor = _defaultColor;
+                    
+                _renderer.material.color = _originalColor;
+                _pressedColor = new Color(_originalColor.r * DARKEN_FACTOR, _originalColor.g * DARKEN_FACTOR, _originalColor.b * DARKEN_FACTOR, _originalColor.a);
+            }
+
+            if (_currentLabel != null)
+            {
+                Destroy(_currentLabel);
+                _currentLabel = null;
+            }
+
+            if (_hasCustomColor && labelPrefab != null)
+            {
+                _currentLabel = Instantiate(labelPrefab, transform);
+                var textComponent = _currentLabel.GetComponentInChildren<TMP_Text>();
+                if (textComponent != null)
+                    textComponent.text = LabelText;
+            }
+        }
+
+        public void StartGlow(float duration, float minIntensity, float maxIntensity)
+        {
+            if (_renderer == null) return;
+
+            StopGlow();
+
+            _renderer.material.EnableKeyword("_EMISSION");
+            
+            _glowSequence = DOTween.Sequence();
+            
+            _currentGlowIntensity = minIntensity;
+            _renderer.material.SetColor(EmissionColorId, _originalColor * _currentGlowIntensity);
+
+            var tween = DOTween.To(() => _currentGlowIntensity, x => 
+                {
+                    _currentGlowIntensity = x;
+                    _renderer.material.SetColor(EmissionColorId, _originalColor * _currentGlowIntensity);
+                }, maxIntensity, duration)
+                .SetEase(Ease.InOutSine)
+                .SetLoops(-1, LoopType.Yoyo);
+
+            _glowSequence.Append(tween);
+        }
+
+        public void StopGlow()
+        {
+            if (_glowSequence != null && _glowSequence.IsPlaying())
+                _glowSequence.Kill();
+
+            if (_renderer != null)
+            {
+                _renderer.material.SetColor(EmissionColorId, Color.black);
+                _renderer.material.DisableKeyword("_EMISSION");
+            }
         }
 
         private void OnMouseDown()
@@ -86,9 +177,11 @@ namespace Project.Runtime.Scripts.Piano
                 _renderer.material.DOKill();
                 _renderer.material.DOColor(_pressedColor, ANIMATION_DURATION);
             }
+
+            OnNotePlayed?.Invoke(MidiNote);
         }
         
-        public void ReleaseKey()
+        private void ReleaseKey()
         {
             if (!_isPlaying) return;
             

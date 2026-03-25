@@ -1,8 +1,9 @@
-using Project.Runtime.Scripts.Piano;
-using TMPro;
+using System.Collections.Generic;
+using Project.Runtime.Scripts.Music.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Project.Runtime.Scripts
+namespace Project.Runtime.Scripts.Piano
 {
     public class PianoBuilder : MonoBehaviour
     {
@@ -12,19 +13,11 @@ namespace Project.Runtime.Scripts
 
         [Header("UI & Visuals")]
         [SerializeField] private GameObject _noteLabelPrefab;
-        [SerializeField] private Color _colorC = Color.green;
-        [SerializeField] private Color _colorD = new Color(1f, 0.5f, 0f);
-        [SerializeField] private Color _colorE = new Color(0.5f, 0f, 0.5f);
-        [SerializeField] private Color _colorF = Color.yellow;
-        [SerializeField] private Color _colorG = Color.red;
-        [SerializeField] private Color _colorA = Color.blue;
-        [SerializeField] private Color _colorB = new Color(0.6f, 0.3f, 0f);
+        [SerializeField] private NoteColorSchemeSO _colorScheme;
 
         private const int STARTING_MIDI_NOTE = 21;
         private const int WHITE_KEYS_COUNT = 60;
         private const int BLACK_KEYS_COUNT = 42;
-        private const int CENTRAL_OCTAVE_START = 60;
-        private const int CENTRAL_OCTAVE_END = 83;
         private const int NOTES_PER_OCTAVE = 12;
 
         private readonly string[] _whiteNoteNames = { "A", "B", "C", "D", "E", "F", "G" };
@@ -33,6 +26,8 @@ namespace Project.Runtime.Scripts
         private readonly string[] _blackNoteNames = { "As", "Cs", "Ds", "Fs", "Gs" };
         private readonly int[] _blackNoteOffsets = { 1, 4, 6, 9, 11 };
 
+        private readonly List<KeyView> _allKeys = new List<KeyView>();
+
         private void Awake()
         {
             if (_whiteKeysParent == null) return;
@@ -40,6 +35,20 @@ namespace Project.Runtime.Scripts
             
             BuildKeys(_whiteKeysParent, WHITE_KEYS_COUNT, _whiteNoteNames, _whiteNoteOffsets, 7, true);
             BuildKeys(_blackKeysParent, BLACK_KEYS_COUNT, _blackNoteNames, _blackNoteOffsets, 5, false);
+            
+            LoadOneOctave();
+        }
+
+        [Button("Load One Octave (C4 - B4)")]
+        public void LoadOneOctave()
+        {
+            UpdateHighlights(60, 71);
+        }
+
+        [Button("Load Two Octaves (C4 - B5)")]
+        public void LoadTwoOctaves()
+        {
+            UpdateHighlights(60, 83);
         }
 
         private void BuildKeys(Transform parent, int expectedCount, string[] names, int[] offsets, int notesPerOctave, bool isWhiteKey)
@@ -62,44 +71,32 @@ namespace Project.Runtime.Scripts
                 keyTransform.gameObject.name = $"Key_{noteName}{midiOctave}";
                 
                 var keyView = keyTransform.gameObject.AddComponent<KeyView>();
-                var isCentral = midiNote >= CENTRAL_OCTAVE_START && midiNote <= CENTRAL_OCTAVE_END;
+                keyView.Initialize(midiNote, isWhiteKey, noteName, $"{noteName}{midiOctave}");
                 
-                if (isCentral && isWhiteKey)
+                _allKeys.Add(keyView);
+            }
+        }
+
+        private void UpdateHighlights(int startMidi, int endMidi)
+        {
+            foreach (var key in _allKeys)
+            {
+                var isCentral = key.MidiNote >= startMidi && key.MidiNote <= endMidi;
+                
+                if (isCentral && key.IsWhiteKey)
                 {
-                    var keyColor = GetColorForNote(noteName);
-                    keyView.Initialize(midiNote, keyColor, true, isWhiteKey);
-                    CreateNoteLabel(keyTransform, $"{noteName}{midiOctave}", keyColor);
+                    var keyColor = GetColorForNote(key.NoteName);
+                    key.SetHighlight(true, keyColor, _noteLabelPrefab);
                 }
                 else
-                    keyView.Initialize(midiNote, Color.white, false, isWhiteKey);
+                    key.SetHighlight(false, Color.white);
             }
         }
 
         private Color GetColorForNote(string noteName)
         {
-            switch (noteName)
-            {
-                case "C": return _colorC;
-                case "D": return _colorD;
-                case "E": return _colorE;
-                case "F": return _colorF;
-                case "G": return _colorG;
-                case "A": return _colorA;
-                case "B": return _colorB;
-                default: return Color.white;
-            }
-        }
-
-        private void CreateNoteLabel(Transform parent, string text, Color color)
-        {
-            if (_noteLabelPrefab == null) return;
-            
-            var labelInstance = Instantiate(_noteLabelPrefab, parent);
-            var textComponent = labelInstance.GetComponentInChildren<TMP_Text>();
-            if (textComponent == null) return;
-            
-            textComponent.text = text;
-            //textComponent.color = color;
+            if (_colorScheme == null) return Color.white;
+            return _colorScheme.GetColorFromName(noteName);
         }
     }
 }

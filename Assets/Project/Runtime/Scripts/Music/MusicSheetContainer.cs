@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Project.Runtime.Scripts.Music;
 using Project.Runtime.Scripts.Music.Data;
+using Project.Runtime.Scripts.UI;
+using UnityEngine;
 
-namespace Project.Runtime.Scripts.UI
+namespace Project.Runtime.Scripts.Music
 {
     public class MusicSheetContainer : MonoBehaviour
     {
@@ -24,21 +24,29 @@ namespace Project.Runtime.Scripts.UI
         [SerializeField] private float _startOffsetX = 0f;
         [SerializeField] private float _startOffsetY = 0f;
 
+        private readonly List<SheetNoteView> _allNotes = new List<SheetNoteView>();
+        private bool _isBuilt;
+
+        public IReadOnlyList<SheetNoteView> AllNotes => _allNotes;
+
         private void Start()
         {
-            if (_musicData == null) return;
-            if (_leftPageParent == null) return;
-            if (_rightPageParent == null) return;
-            
             BuildSheet();
         }
 
-        private void BuildSheet()
+        public void BuildSheet()
         {
+            if (_isBuilt) return;
+            if (_musicData == null) return;
+            if (_leftPageParent == null) return;
+            if (_rightPageParent == null) return;
+
             var totalMeasures = _musicData.Measures;
             var currentMeasureIndex = 0;
             var staffCount = 0;
             var maxStaffs = _staffsPerPage * 2;
+
+            _allNotes.Clear();
 
             while (currentMeasureIndex < totalMeasures.Count && staffCount < maxStaffs)
             {
@@ -60,9 +68,13 @@ namespace Project.Runtime.Scripts.UI
                     currentMeasureIndex++;
                 }
 
-                staffView.SetupStaff(measuresForThisStaff, _musicData.BeatsPerMeasure);
+                var staffNotes = staffView.SetupStaff(measuresForThisStaff, _musicData.BeatsPerMeasure);
+                _allNotes.AddRange(staffNotes);
+                
                 staffCount++;
             }
+
+            _isBuilt = true;
         }
     }
 }
