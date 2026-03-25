@@ -1160,6 +1160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Piano
       objectReference: {fileID: 0}
+    - target: {fileID: 5412746477985256127, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: _musicData
+      value: 
+      objectReference: {fileID: 11400000, guid: d89bcd2a75cd8d14e8a3167066a22f61, type: 2}
     - target: {fileID: 5436379763292141457, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: _glowDuration
       value: 0

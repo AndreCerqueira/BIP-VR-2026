@@ -16,28 +16,133 @@ namespace Project.Runtime.Scripts.Music.Utils
         private const int F4 = 65;
         private const int G4 = 67;
         private const int A4 = 69;
+        private const int B4 = 71;
+        private const int C5 = 72;
         
         private const float QUARTER = 1f;
         private const float HALF = 2f;
+        private const float WHOLE = 4f;
 
-        [Button]
-        public void Generate()
+        [Button("Generate: Twinkle Twinkle")]
+        public void GenerateTwinkleTwinkle()
         {
             if (_musicData == null) return;
 
             var allNotes = new List<SheetNote>();
 
-            allNotes.AddRange(GetPartA());
-            allNotes.AddRange(GetPartB());
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(C4, QUARTER), new SheetNote(C4, QUARTER),
+                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(A4, QUARTER), new SheetNote(A4, QUARTER),
+                new SheetNote(G4, HALF)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, HALF)
+            });
+
+            var partC = new[]
+            {
+                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(D4, HALF)
+            };
+
+            allNotes.AddRange(partC);
+            allNotes.AddRange(partC);
             
-            allNotes.AddRange(GetPartC());
-            allNotes.AddRange(GetPartC());
-            
-            allNotes.AddRange(GetPartA());
-            allNotes.AddRange(GetPartB());
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(C4, QUARTER), new SheetNote(C4, QUARTER),
+                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(A4, QUARTER), new SheetNote(A4, QUARTER),
+                new SheetNote(G4, HALF)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, HALF)
+            });
 
             _musicData.GenerateMeasures(allNotes);
+            SaveMusicData();
+        }
+
+        [Button("Generate: Mary Had a Little Lamb")]
+        public void GenerateMaryHadALittleLamb()
+        {
+            if (_musicData == null) return;
+
+            var allNotes = new List<SheetNote>();
             
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(E4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(E4, HALF)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(D4, HALF),
+                new SheetNote(E4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(G4, HALF)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(E4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, WHOLE)
+            });
+
+            _musicData.GenerateMeasures(allNotes);
+            SaveMusicData();
+        }
+
+        [Button("Generate: Ode to Joy")]
+        public void GenerateOdeToJoy()
+        {
+            if (_musicData == null) return;
+
+            var allNotes = new List<SheetNote>();
+
+            var partA = new[]
+            {
+                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(F4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(G4, QUARTER), new SheetNote(F4, QUARTER),
+                new SheetNote(E4, QUARTER), new SheetNote(D4, QUARTER),
+                new SheetNote(C4, QUARTER), new SheetNote(C4, QUARTER),
+                new SheetNote(D4, QUARTER), new SheetNote(E4, QUARTER)
+            };
+
+            allNotes.AddRange(partA);
+            allNotes.AddRange(new[] { new SheetNote(E4, HALF), new SheetNote(D4, HALF) });
+
+            allNotes.AddRange(partA);
+            allNotes.AddRange(new[] { new SheetNote(D4, HALF), new SheetNote(C4, HALF) });
+
+            _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
         }
 
@@ -48,39 +153,6 @@ namespace Project.Runtime.Scripts.Music.Utils
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 #endif
-        }
-
-        private IEnumerable<SheetNote> GetPartA()
-        {
-            return new List<SheetNote>
-            {
-                new SheetNote(C4, QUARTER), new SheetNote(C4, QUARTER),
-                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
-                new SheetNote(A4, QUARTER), new SheetNote(A4, QUARTER),
-                new SheetNote(G4, HALF)
-            };
-        }
-
-        private IEnumerable<SheetNote> GetPartB()
-        {
-            return new List<SheetNote>
-            {
-                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
-                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
-                new SheetNote(D4, QUARTER), new SheetNote(D4, QUARTER),
-                new SheetNote(C4, HALF)
-            };
-        }
-
-        private IEnumerable<SheetNote> GetPartC()
-        {
-            return new List<SheetNote>
-            {
-                new SheetNote(G4, QUARTER), new SheetNote(G4, QUARTER),
-                new SheetNote(F4, QUARTER), new SheetNote(F4, QUARTER),
-                new SheetNote(E4, QUARTER), new SheetNote(E4, QUARTER),
-                new SheetNote(D4, HALF)
-            };
         }
     }
 }
