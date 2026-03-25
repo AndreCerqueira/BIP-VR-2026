@@ -29,9 +29,29 @@ namespace Project.Runtime.Scripts.Music
 
         public IReadOnlyList<SheetNoteView> AllNotes => _allNotes;
 
-        private void Start()
+        public void LoadSheet(SheetMusicSO newMusicData)
         {
+            _musicData = newMusicData;
+            ClearSheet();
             BuildSheet();
+        }
+
+        public void ClearSheet()
+        {
+            _isBuilt = false;
+            _allNotes.Clear();
+
+            if (_leftPageParent != null)
+            {
+                foreach (Transform child in _leftPageParent)
+                    Destroy(child.gameObject);
+            }
+
+            if (_rightPageParent != null)
+            {
+                foreach (Transform child in _rightPageParent)
+                    Destroy(child.gameObject);
+            }
         }
 
         public void BuildSheet()
