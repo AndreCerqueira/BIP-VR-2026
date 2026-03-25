@@ -13,11 +13,10 @@ namespace Project.Runtime.Scripts.Music
         [Header("References")]
         [SerializeField] private GameObject _staffPrefab;
         [SerializeField] private Transform _leftPageParent;
-        [SerializeField] private Transform _rightPageParent;
 
         [Header("Layout & Spacing")]
         [SerializeField] private int _measuresPerStaff = 4;
-        [SerializeField] private int _staffsPerPage = 3;
+        [SerializeField] private int _maxStaffs = 4;
         [SerializeField] private float _staffSpacingY = -5f;
 
         [Header("Global Offsets")]
@@ -29,9 +28,23 @@ namespace Project.Runtime.Scripts.Music
 
         public IReadOnlyList<SheetNoteView> AllNotes => _allNotes;
 
-        private void Start()
+        public void LoadSheet(SheetMusicSO newMusicData)
         {
+            _musicData = newMusicData;
+            ClearSheet();
             BuildSheet();
+        }
+
+        public void ClearSheet()
+        {
+            _isBuilt = false;
+            _allNotes.Clear();
+
+            if (_leftPageParent != null)
+            {
+                foreach (Transform child in _leftPageParent)
+                    Destroy(child.gameObject);
+            }
         }
 
         public void BuildSheet()
@@ -39,23 +52,19 @@ namespace Project.Runtime.Scripts.Music
             if (_isBuilt) return;
             if (_musicData == null) return;
             if (_leftPageParent == null) return;
-            if (_rightPageParent == null) return;
 
             var totalMeasures = _musicData.Measures;
             var currentMeasureIndex = 0;
             var staffCount = 0;
-            var maxStaffs = _staffsPerPage * 2;
 
             _allNotes.Clear();
 
-            while (currentMeasureIndex < totalMeasures.Count && staffCount < maxStaffs)
+            while (currentMeasureIndex < totalMeasures.Count && staffCount < _maxStaffs)
             {
-                var targetParent = staffCount < _staffsPerPage ? _leftPageParent : _rightPageParent;
-                var staffObj = Instantiate(_staffPrefab, targetParent);
+                var staffObj = Instantiate(_staffPrefab, _leftPageParent);
                 
-                var localStaffIndex = staffCount % _staffsPerPage;
                 var posX = _startOffsetX;
-                var posY = _startOffsetY + (localStaffIndex * _staffSpacingY);
+                var posY = _startOffsetY + (staffCount * _staffSpacingY);
                 
                 staffObj.transform.localPosition = new Vector3(posX, posY, 0f);
                 
