@@ -25,6 +25,7 @@ namespace Project.Runtime.Scripts.Music
 
         public int MidiNote => _data?.MidiNote ?? -1;
         public bool IsRest => _data?.IsRest ?? true;
+        public float Duration => _data?.Duration ?? 0f;
 
         private void Awake()
         {
