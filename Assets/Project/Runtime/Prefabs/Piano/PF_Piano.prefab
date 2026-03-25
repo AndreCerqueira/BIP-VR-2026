@@ -236,7 +236,6 @@ GameObject:
   - component: {fileID: 7143302528388828533}
   - component: {fileID: 4508337282740902740}
   - component: {fileID: 3054671759687303259}
-  - component: {fileID: 5591856769185650566}
   m_Layer: 0
   m_Name: musical_instrument_001.100
   m_TagString: Untagged
@@ -434,18 +433,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5591856769185650566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110705481377932939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &147044634702544147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1784,6 @@ GameObject:
   - component: {fileID: 1341468830119000491}
   - component: {fileID: 7225780524739789762}
   - component: {fileID: 448888585011898759}
-  - component: {fileID: 8092426227988503583}
   m_Layer: 0
   m_Name: musical_instrument_001.010
   m_TagString: Untagged
@@ -1995,18 +1981,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8092426227988503583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518023099719909554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &668354593092025052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,7 +1994,6 @@ GameObject:
   - component: {fileID: 4594620681921252507}
   - component: {fileID: 6910673992971744833}
   - component: {fileID: 8647853391766500312}
-  - component: {fileID: 1137264084053925486}
   m_Layer: 0
   m_Name: musical_instrument_001.096
   m_TagString: Untagged
@@ -2218,18 +2191,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1137264084053925486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668354593092025052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &684056521316584158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2243,7 +2204,6 @@ GameObject:
   - component: {fileID: 6955221307100527243}
   - component: {fileID: 4615023763536335165}
   - component: {fileID: 1737432477660649480}
-  - component: {fileID: 754598903176359935}
   m_Layer: 0
   m_Name: musical_instrument_001.062
   m_TagString: Untagged
@@ -2441,18 +2401,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &754598903176359935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684056521316584158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &812378706839115511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,7 +2860,6 @@ GameObject:
   - component: {fileID: 6833327309188624740}
   - component: {fileID: 7921033344739951170}
   - component: {fileID: 8594207691639602945}
-  - component: {fileID: 1025910697367714304}
   m_Layer: 0
   m_Name: musical_instrument_001.048
   m_TagString: Untagged
@@ -3110,18 +3057,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1025910697367714304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927565633270043918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &1154099969871541207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +3606,6 @@ GameObject:
   - component: {fileID: 7565499934722039738}
   - component: {fileID: 3422700321245374513}
   - component: {fileID: 5504641686058633355}
-  - component: {fileID: 577936023329419089}
   m_Layer: 0
   m_Name: musical_instrument_001.067
   m_TagString: Untagged
@@ -3869,18 +3803,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &577936023329419089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402592274980559754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &1446409968229156505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,7 +4084,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -4661,7 +4583,6 @@ GameObject:
   - component: {fileID: 544582226482684360}
   - component: {fileID: 1668639436075755589}
   - component: {fileID: 2236319641851253077}
-  - component: {fileID: 8515886942515535438}
   m_Layer: 0
   m_Name: musical_instrument_001.043
   m_TagString: Untagged
@@ -4859,18 +4780,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8515886942515535438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983229282976020974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2001197101871025658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,7 +4793,6 @@ GameObject:
   - component: {fileID: 6254328656168426092}
   - component: {fileID: 8222777418433171648}
   - component: {fileID: 8945720587798070504}
-  - component: {fileID: 9007175860202873846}
   m_Layer: 0
   m_Name: musical_instrument_001.034
   m_TagString: Untagged
@@ -5082,18 +4990,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9007175860202873846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001197101871025658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2221683690893488821
 GameObject:
   m_ObjectHideFlags: 0
@@ -5107,7 +5003,6 @@ GameObject:
   - component: {fileID: 8452301661457477982}
   - component: {fileID: 4593751484184899308}
   - component: {fileID: 5206757566629740860}
-  - component: {fileID: 3113058367497773395}
   m_Layer: 0
   m_Name: musical_instrument_001.077
   m_TagString: Untagged
@@ -5305,18 +5200,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3113058367497773395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2221683690893488821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2351253680513292999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5330,7 +5213,6 @@ GameObject:
   - component: {fileID: 5905747592454415946}
   - component: {fileID: 1257482367716262476}
   - component: {fileID: 8463743428432643676}
-  - component: {fileID: 2554647064939663928}
   m_Layer: 0
   m_Name: musical_instrument_001.084
   m_TagString: Untagged
@@ -5528,18 +5410,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2554647064939663928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2351253680513292999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2440440852958502470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,7 +5869,6 @@ GameObject:
   - component: {fileID: 3172845426145944522}
   - component: {fileID: 1768300224476330307}
   - component: {fileID: 2122015365460783468}
-  - component: {fileID: 2911667039435753553}
   m_Layer: 0
   m_Name: musical_instrument_001.069
   m_TagString: Untagged
@@ -6197,18 +6066,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2911667039435753553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2462179781530824425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2544058435864380688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6312,7 +6169,6 @@ GameObject:
   - component: {fileID: 899213665763000168}
   - component: {fileID: 8498528719888786494}
   - component: {fileID: 3458296969799986669}
-  - component: {fileID: 2272568228982707160}
   m_Layer: 0
   m_Name: musical_instrument_001.007
   m_TagString: Untagged
@@ -6510,18 +6366,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2272568228982707160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2719817380766650335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &2980986107403852224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,7 +6379,6 @@ GameObject:
   - component: {fileID: 1174089689821500382}
   - component: {fileID: 1306065079742809020}
   - component: {fileID: 7078756401597823051}
-  - component: {fileID: 5938613130654816767}
   m_Layer: 0
   m_Name: musical_instrument_001.031
   m_TagString: Untagged
@@ -6733,18 +6576,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5938613130654816767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2980986107403852224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3205270734403023173
 GameObject:
   m_ObjectHideFlags: 0
@@ -6758,7 +6589,6 @@ GameObject:
   - component: {fileID: 41604889753239275}
   - component: {fileID: 2679844936044986694}
   - component: {fileID: 4963254647997609439}
-  - component: {fileID: 8062105771822754743}
   m_Layer: 0
   m_Name: musical_instrument_001.014
   m_TagString: Untagged
@@ -6956,18 +6786,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8062105771822754743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3205270734403023173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3259334615956169247
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,7 +6799,6 @@ GameObject:
   - component: {fileID: 5725120723395176500}
   - component: {fileID: 3534363569515506187}
   - component: {fileID: 2169461182685888844}
-  - component: {fileID: 6774381235851484142}
   m_Layer: 0
   m_Name: musical_instrument_001.057
   m_TagString: Untagged
@@ -7179,18 +6996,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6774381235851484142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259334615956169247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3346668395745261012
 GameObject:
   m_ObjectHideFlags: 0
@@ -7427,7 +7232,6 @@ GameObject:
   - component: {fileID: 2364730152948148267}
   - component: {fileID: 5618841402563035905}
   - component: {fileID: 8129868997143172742}
-  - component: {fileID: 8168175802452884156}
   m_Layer: 0
   m_Name: musical_instrument_001.049
   m_TagString: Untagged
@@ -7625,18 +7429,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8168175802452884156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3379759668335415528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3394965077629207001
 GameObject:
   m_ObjectHideFlags: 0
@@ -7650,7 +7442,6 @@ GameObject:
   - component: {fileID: 5227490884848757485}
   - component: {fileID: 8830286214887128778}
   - component: {fileID: 1857543232615860141}
-  - component: {fileID: 6269526042371241715}
   m_Layer: 0
   m_Name: musical_instrument_001.085
   m_TagString: Untagged
@@ -7848,18 +7639,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6269526042371241715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3394965077629207001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3428573725186097281
 GameObject:
   m_ObjectHideFlags: 0
@@ -7873,7 +7652,6 @@ GameObject:
   - component: {fileID: 7365362158920734043}
   - component: {fileID: 8277601769716805381}
   - component: {fileID: 3051907549089459298}
-  - component: {fileID: 795534194610568449}
   m_Layer: 0
   m_Name: musical_instrument_001.064
   m_TagString: Untagged
@@ -8071,18 +7849,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &795534194610568449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3428573725186097281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3441700128559446411
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,7 +7862,6 @@ GameObject:
   - component: {fileID: 4929353315241910678}
   - component: {fileID: 5732268695634025110}
   - component: {fileID: 6205062536602941}
-  - component: {fileID: 1371296309194286438}
   m_Layer: 0
   m_Name: musical_instrument_001.002
   m_TagString: Untagged
@@ -8294,18 +8059,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1371296309194286438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3441700128559446411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3642164193552172622
 GameObject:
   m_ObjectHideFlags: 0
@@ -8319,7 +8072,6 @@ GameObject:
   - component: {fileID: 5269639990709645158}
   - component: {fileID: 5330752007860801315}
   - component: {fileID: 7167464475596368416}
-  - component: {fileID: 2653966652504792181}
   m_Layer: 0
   m_Name: musical_instrument_001.012
   m_TagString: Untagged
@@ -8517,18 +8269,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2653966652504792181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642164193552172622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &3788135130763418928
 GameObject:
   m_ObjectHideFlags: 0
@@ -8988,7 +8728,6 @@ GameObject:
   - component: {fileID: 6888405333733991786}
   - component: {fileID: 470516646512423696}
   - component: {fileID: 3676502516744128816}
-  - component: {fileID: 7242863705515057881}
   m_Layer: 0
   m_Name: musical_instrument_001.078
   m_TagString: Untagged
@@ -9186,18 +8925,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7242863705515057881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975230993864244926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4113979900097701154
 GameObject:
   m_ObjectHideFlags: 0
@@ -9211,7 +8938,6 @@ GameObject:
   - component: {fileID: 5296211542137909390}
   - component: {fileID: 8200876482799598740}
   - component: {fileID: 3653753131494087557}
-  - component: {fileID: 5802008148370027123}
   m_Layer: 0
   m_Name: musical_instrument_001.017
   m_TagString: Untagged
@@ -9409,18 +9135,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5802008148370027123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4113979900097701154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4129854099692395622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9434,7 +9148,6 @@ GameObject:
   - component: {fileID: 2205642618335616191}
   - component: {fileID: 8802627266427099280}
   - component: {fileID: 4021322848144824113}
-  - component: {fileID: 2412201385006860870}
   m_Layer: 0
   m_Name: musical_instrument_001.036
   m_TagString: Untagged
@@ -9632,18 +9345,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2412201385006860870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4129854099692395622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4245457953302815795
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,7 +9358,6 @@ GameObject:
   - component: {fileID: 8538060448931863590}
   - component: {fileID: 4801551837561429699}
   - component: {fileID: 8997517856074792192}
-  - component: {fileID: 7037348510367099615}
   m_Layer: 0
   m_Name: musical_instrument_001.058
   m_TagString: Untagged
@@ -9855,18 +9555,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7037348510367099615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4245457953302815795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4327851221546663479
 GameObject:
   m_ObjectHideFlags: 0
@@ -9880,7 +9568,6 @@ GameObject:
   - component: {fileID: 8073861131671671177}
   - component: {fileID: 4323156930397025596}
   - component: {fileID: 2911221739193557987}
-  - component: {fileID: 1708822151938379694}
   m_Layer: 0
   m_Name: musical_instrument_001.042
   m_TagString: Untagged
@@ -10078,18 +9765,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1708822151938379694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4327851221546663479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4368203286760464945
 GameObject:
   m_ObjectHideFlags: 0
@@ -10179,7 +9854,6 @@ GameObject:
   - component: {fileID: 4548593026815677703}
   - component: {fileID: 3196693096673012249}
   - component: {fileID: 195764705774801226}
-  - component: {fileID: 4046677617640962404}
   m_Layer: 0
   m_Name: musical_instrument_001.019
   m_TagString: Untagged
@@ -10377,18 +10051,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4046677617640962404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4381842233264782180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4459978191864734062
 GameObject:
   m_ObjectHideFlags: 0
@@ -10402,7 +10064,6 @@ GameObject:
   - component: {fileID: 6478682507874673745}
   - component: {fileID: 7513757488744158271}
   - component: {fileID: 4885204114374809030}
-  - component: {fileID: 962915786694884470}
   m_Layer: 0
   m_Name: musical_instrument_001.090
   m_TagString: Untagged
@@ -10600,18 +10261,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &962915786694884470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4459978191864734062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4502297365726829824
 GameObject:
   m_ObjectHideFlags: 0
@@ -10848,7 +10497,6 @@ GameObject:
   - component: {fileID: 2663413307178149799}
   - component: {fileID: 7289224759569955879}
   - component: {fileID: 1478324313806902985}
-  - component: {fileID: 2520734909967873143}
   m_Layer: 0
   m_Name: musical_instrument_001.005
   m_TagString: Untagged
@@ -11046,18 +10694,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2520734909967873143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4647109882103032151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4737990450040009324
 GameObject:
   m_ObjectHideFlags: 0
@@ -11294,7 +10930,6 @@ GameObject:
   - component: {fileID: 4865477662923746081}
   - component: {fileID: 3000355863179798201}
   - component: {fileID: 4525438207182504201}
-  - component: {fileID: 3078202372900004158}
   m_Layer: 0
   m_Name: musical_instrument_001.103
   m_TagString: Untagged
@@ -11492,18 +11127,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3078202372900004158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4752625992299725115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4767192391331464481
 GameObject:
   m_ObjectHideFlags: 0
@@ -11557,13 +11180,7 @@ MonoBehaviour:
   _whiteKeysParent: {fileID: 6268353103830662845}
   _blackKeysParent: {fileID: 6374953247451371987}
   _noteLabelPrefab: {fileID: 4392192051261447497, guid: 75e706e560d77bf418d4984164288346, type: 3}
-  _colorC: {r: 0.9254902, g: 0.28235295, b: 0.23529412, a: 1}
-  _colorD: {r: 0.9137255, g: 0.6075885, b: 0.12941176, a: 1}
-  _colorE: {r: 0.88235295, g: 0.8666667, b: 0, a: 1}
-  _colorF: {r: 0.4117647, g: 0.90588236, b: 0.23137255, a: 1}
-  _colorG: {r: 0.33333334, g: 0.88235295, b: 0.83137256, a: 1}
-  _colorA: {r: 0.3882353, g: 0.64705884, b: 0.9529412, a: 1}
-  _colorB: {r: 0.69803923, g: 0.36078432, b: 0.94509804, a: 1}
+  _colorScheme: {fileID: 11400000, guid: ef41d4522698da344b89226794096a5b, type: 2}
 --- !u!1 &4773379524467324391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11577,7 +11194,6 @@ GameObject:
   - component: {fileID: 2558827967364749881}
   - component: {fileID: 3771169816602489099}
   - component: {fileID: 1130684027045130620}
-  - component: {fileID: 5972530629839232968}
   m_Layer: 0
   m_Name: musical_instrument_001.101
   m_TagString: Untagged
@@ -11775,18 +11391,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5972530629839232968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773379524467324391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4871928255988912014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11800,7 +11404,6 @@ GameObject:
   - component: {fileID: 1732207188944551476}
   - component: {fileID: 6397434208657825391}
   - component: {fileID: 4644080017523989327}
-  - component: {fileID: 3699533969676389032}
   m_Layer: 0
   m_Name: musical_instrument_001.016
   m_TagString: Untagged
@@ -11998,18 +11601,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3699533969676389032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4871928255988912014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &4890155509569188995
 GameObject:
   m_ObjectHideFlags: 0
@@ -12469,7 +12060,6 @@ GameObject:
   - component: {fileID: 4145669012586173653}
   - component: {fileID: 6564052659941611189}
   - component: {fileID: 3473937282440061154}
-  - component: {fileID: 7010191875789943932}
   m_Layer: 0
   m_Name: musical_instrument_001.047
   m_TagString: Untagged
@@ -12667,18 +12257,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7010191875789943932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5365037986936941267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &5372889970504270330
 GameObject:
   m_ObjectHideFlags: 0
@@ -13138,7 +12716,6 @@ GameObject:
   - component: {fileID: 60958563803237981}
   - component: {fileID: 2995174051954216616}
   - component: {fileID: 1956232717127678485}
-  - component: {fileID: 301044330777501594}
   m_Layer: 0
   m_Name: musical_instrument_001.029
   m_TagString: Untagged
@@ -13336,18 +12913,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &301044330777501594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5416922342540112846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &5430913422426326460
 GameObject:
   m_ObjectHideFlags: 0
@@ -13361,7 +12926,6 @@ GameObject:
   - component: {fileID: 3725620397363027961}
   - component: {fileID: 180444003449185372}
   - component: {fileID: 7230272712376268765}
-  - component: {fileID: 6984737449356971825}
   m_Layer: 0
   m_Name: musical_instrument_001.046
   m_TagString: Untagged
@@ -13559,18 +13123,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6984737449356971825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5430913422426326460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &5528921549961706168
 GameObject:
   m_ObjectHideFlags: 0
@@ -14476,7 +14028,6 @@ GameObject:
   - component: {fileID: 1578818248063583997}
   - component: {fileID: 5653532049419264787}
   - component: {fileID: 2803795387224843458}
-  - component: {fileID: 5436379763292141457}
   m_Layer: 0
   m_Name: musical_instrument_001.098
   m_TagString: Untagged
@@ -14674,18 +14225,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5436379763292141457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6016577528525470758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6172290852590186498
 GameObject:
   m_ObjectHideFlags: 0
@@ -14922,7 +14461,6 @@ GameObject:
   - component: {fileID: 8140626318866324620}
   - component: {fileID: 8304561652533272155}
   - component: {fileID: 7517811593549188394}
-  - component: {fileID: 4591359247938811907}
   m_Layer: 0
   m_Name: musical_instrument_001.041
   m_TagString: Untagged
@@ -15120,18 +14658,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4591359247938811907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6220982647026722924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6302401918176971739
 GameObject:
   m_ObjectHideFlags: 0
@@ -15368,7 +14894,6 @@ GameObject:
   - component: {fileID: 523794684896070154}
   - component: {fileID: 3555074229586819450}
   - component: {fileID: 4390325320131292051}
-  - component: {fileID: 2471193777941851583}
   m_Layer: 0
   m_Name: musical_instrument_001.035
   m_TagString: Untagged
@@ -15566,18 +15091,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2471193777941851583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342029054908816190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6382330854160962931
 GameObject:
   m_ObjectHideFlags: 0
@@ -15591,7 +15104,6 @@ GameObject:
   - component: {fileID: 6627442166218864919}
   - component: {fileID: 7453561662628827119}
   - component: {fileID: 8945249230428820821}
-  - component: {fileID: 1326498681448159056}
   m_Layer: 0
   m_Name: musical_instrument_001.055
   m_TagString: Untagged
@@ -15789,18 +15301,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1326498681448159056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6382330854160962931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6455129678830839410
 GameObject:
   m_ObjectHideFlags: 0
@@ -15814,7 +15314,6 @@ GameObject:
   - component: {fileID: 6165743479803763907}
   - component: {fileID: 85529838191370799}
   - component: {fileID: 1919559206314506046}
-  - component: {fileID: 8539821341182597158}
   m_Layer: 0
   m_Name: musical_instrument_001.060
   m_TagString: Untagged
@@ -16012,18 +15511,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8539821341182597158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6455129678830839410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6483770988430847848
 GameObject:
   m_ObjectHideFlags: 0
@@ -16037,7 +15524,6 @@ GameObject:
   - component: {fileID: 2745357534550696391}
   - component: {fileID: 6421821194080313016}
   - component: {fileID: 7029828120269273729}
-  - component: {fileID: 3071932657844217611}
   m_Layer: 0
   m_Name: musical_instrument_001.021
   m_TagString: Untagged
@@ -16235,18 +15721,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3071932657844217611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6483770988430847848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6534826262652885428
 GameObject:
   m_ObjectHideFlags: 0
@@ -16706,7 +16180,6 @@ GameObject:
   - component: {fileID: 1463798243196501179}
   - component: {fileID: 8220107980570324080}
   - component: {fileID: 1359266734703822752}
-  - component: {fileID: 5944670525125889163}
   m_Layer: 0
   m_Name: musical_instrument_001.037
   m_TagString: Untagged
@@ -16904,18 +16377,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5944670525125889163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6618350364935287490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6622013091425958837
 GameObject:
   m_ObjectHideFlags: 0
@@ -16929,7 +16390,6 @@ GameObject:
   - component: {fileID: 7880099441290029720}
   - component: {fileID: 1883538241613105503}
   - component: {fileID: 1456931340045384480}
-  - component: {fileID: 3336439278583505215}
   m_Layer: 0
   m_Name: musical_instrument_001.073
   m_TagString: Untagged
@@ -17127,18 +16587,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3336439278583505215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6622013091425958837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &6759750658843683001
 GameObject:
   m_ObjectHideFlags: 0
@@ -17152,7 +16600,6 @@ GameObject:
   - component: {fileID: 5966303067693099126}
   - component: {fileID: 7414528138936404785}
   - component: {fileID: 5477425883093061695}
-  - component: {fileID: 2770974201298584934}
   m_Layer: 0
   m_Name: musical_instrument_001.009
   m_TagString: Untagged
@@ -17350,18 +16797,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2770974201298584934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6759750658843683001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7158672996004997314
 GameObject:
   m_ObjectHideFlags: 0
@@ -17375,7 +16810,6 @@ GameObject:
   - component: {fileID: 7212568117447492777}
   - component: {fileID: 8851521424057623012}
   - component: {fileID: 6847913549086788371}
-  - component: {fileID: 2027414379008796931}
   m_Layer: 0
   m_Name: musical_instrument_001.028
   m_TagString: Untagged
@@ -17573,18 +17007,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2027414379008796931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158672996004997314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7169305542726653484
 GameObject:
   m_ObjectHideFlags: 0
@@ -17883,7 +17305,6 @@ GameObject:
   - component: {fileID: 3630840152706723006}
   - component: {fileID: 1394247822103708513}
   - component: {fileID: 9024660009529635251}
-  - component: {fileID: 2289813444452926496}
   m_Layer: 0
   m_Name: musical_instrument_001.065
   m_TagString: Untagged
@@ -18081,18 +17502,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2289813444452926496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7654198818617483292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7681533982741398037
 GameObject:
   m_ObjectHideFlags: 0
@@ -18106,7 +17515,6 @@ GameObject:
   - component: {fileID: 5952005650625097337}
   - component: {fileID: 7197420355007309589}
   - component: {fileID: 8919901838224110032}
-  - component: {fileID: 2584383512993923261}
   m_Layer: 0
   m_Name: musical_instrument_001.022
   m_TagString: Untagged
@@ -18304,18 +17712,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2584383512993923261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681533982741398037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7689776624543278484
 GameObject:
   m_ObjectHideFlags: 0
@@ -18329,7 +17725,6 @@ GameObject:
   - component: {fileID: 6506266968034574105}
   - component: {fileID: 5183896641602338518}
   - component: {fileID: 4535432334656360797}
-  - component: {fileID: 8793098247413376860}
   m_Layer: 0
   m_Name: musical_instrument_001.076
   m_TagString: Untagged
@@ -18527,18 +17922,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8793098247413376860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7689776624543278484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7728404831720989141
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,7 +17935,6 @@ GameObject:
   - component: {fileID: 4096951434531823402}
   - component: {fileID: 8459642612588418702}
   - component: {fileID: 8102592421094425419}
-  - component: {fileID: 7727140852349638949}
   m_Layer: 0
   m_Name: musical_instrument_001.083
   m_TagString: Untagged
@@ -18750,18 +18132,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7727140852349638949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7728404831720989141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7831164748066419444
 GameObject:
   m_ObjectHideFlags: 0
@@ -18775,7 +18145,6 @@ GameObject:
   - component: {fileID: 3865058830056308571}
   - component: {fileID: 8222243319077831863}
   - component: {fileID: 7849757882054840085}
-  - component: {fileID: 2032532565257125268}
   m_Layer: 0
   m_Name: musical_instrument_001.079
   m_TagString: Untagged
@@ -18973,18 +18342,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2032532565257125268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7831164748066419444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &7908280420373987812
 GameObject:
   m_ObjectHideFlags: 0
@@ -19297,7 +18654,6 @@ GameObject:
   - component: {fileID: 8798456147111905424}
   - component: {fileID: 3761562243294033064}
   - component: {fileID: 7572048556319106609}
-  - component: {fileID: 1114190942050679088}
   m_Layer: 0
   m_Name: musical_instrument_001.070
   m_TagString: Untagged
@@ -19495,18 +18851,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1114190942050679088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8069635116106655840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8141982978986788254
 GameObject:
   m_ObjectHideFlags: 0
@@ -20635,7 +19979,6 @@ GameObject:
   - component: {fileID: 7098505031410113769}
   - component: {fileID: 5617975117993509981}
   - component: {fileID: 3868301507834353521}
-  - component: {fileID: 2298339285727700650}
   m_Layer: 0
   m_Name: musical_instrument_001.023
   m_TagString: Untagged
@@ -20833,18 +20176,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2298339285727700650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8270404747932230645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8333330764026272006
 GameObject:
   m_ObjectHideFlags: 0
@@ -20858,7 +20189,6 @@ GameObject:
   - component: {fileID: 512952825798293740}
   - component: {fileID: 2169665236158851280}
   - component: {fileID: 529058845190683177}
-  - component: {fileID: 803201766929442780}
   m_Layer: 0
   m_Name: musical_instrument_001.072
   m_TagString: Untagged
@@ -21056,18 +20386,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &803201766929442780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333330764026272006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8632007697949856538
 GameObject:
   m_ObjectHideFlags: 0
@@ -21527,7 +20845,6 @@ GameObject:
   - component: {fileID: 6652678583611039089}
   - component: {fileID: 3925637106427122641}
   - component: {fileID: 8774727205916088891}
-  - component: {fileID: 6835668415859051748}
   m_Layer: 0
   m_Name: musical_instrument_001.053
   m_TagString: Untagged
@@ -21725,18 +21042,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6835668415859051748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8671713380217634548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8691888240564738301
 GameObject:
   m_ObjectHideFlags: 0
@@ -21750,7 +21055,6 @@ GameObject:
   - component: {fileID: 9118023600841420439}
   - component: {fileID: 2590079198391780139}
   - component: {fileID: 6029903764787784242}
-  - component: {fileID: 1500061505595837527}
   m_Layer: 0
   m_Name: musical_instrument_001.093
   m_TagString: Untagged
@@ -21948,18 +21252,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1500061505595837527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8691888240564738301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8747476618001691837
 GameObject:
   m_ObjectHideFlags: 0
@@ -21973,7 +21265,6 @@ GameObject:
   - component: {fileID: 328865957230154148}
   - component: {fileID: 1090720646374130754}
   - component: {fileID: 2497355453795051341}
-  - component: {fileID: 3082575911297835515}
   m_Layer: 0
   m_Name: musical_instrument_001.082
   m_TagString: Untagged
@@ -22171,18 +21462,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3082575911297835515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8747476618001691837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8775464929688149797
 GameObject:
   m_ObjectHideFlags: 0
@@ -22196,7 +21475,6 @@ GameObject:
   - component: {fileID: 4149717043573704009}
   - component: {fileID: 1527548098387022570}
   - component: {fileID: 8843528584580970103}
-  - component: {fileID: 486762385528956991}
   m_Layer: 0
   m_Name: musical_instrument_001.030
   m_TagString: Untagged
@@ -22394,18 +21672,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &486762385528956991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8775464929688149797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8777178465319544216
 GameObject:
   m_ObjectHideFlags: 0
@@ -22419,7 +21685,6 @@ GameObject:
   - component: {fileID: 1818975968034486465}
   - component: {fileID: 5636065773724017659}
   - component: {fileID: 3365218127156945385}
-  - component: {fileID: 6969707983229454060}
   m_Layer: 0
   m_Name: musical_instrument_001.026
   m_TagString: Untagged
@@ -22617,18 +21882,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6969707983229454060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8777178465319544216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8778115015730559364
 GameObject:
   m_ObjectHideFlags: 0
@@ -22704,7 +21957,6 @@ GameObject:
   - component: {fileID: 8364575516296838494}
   - component: {fileID: 7003660839582619753}
   - component: {fileID: 7308598621886807495}
-  - component: {fileID: 2790171479717268227}
   m_Layer: 0
   m_Name: musical_instrument_001.094
   m_TagString: Untagged
@@ -22902,18 +22154,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2790171479717268227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782618150648046424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8845161592583392307
 GameObject:
   m_ObjectHideFlags: 0
@@ -23150,7 +22390,6 @@ GameObject:
   - component: {fileID: 8159909313063271127}
   - component: {fileID: 6582060865716352349}
   - component: {fileID: 8121640968507334317}
-  - component: {fileID: 2560963823458974006}
   m_Layer: 0
   m_Name: musical_instrument_001.089
   m_TagString: Untagged
@@ -23348,18 +22587,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2560963823458974006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8858834434673775783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView
 --- !u!1 &8923326097764253706
 GameObject:
   m_ObjectHideFlags: 0
@@ -23596,7 +22823,6 @@ GameObject:
   - component: {fileID: 449759546210892542}
   - component: {fileID: 8480279748310288480}
   - component: {fileID: 4702639879679806098}
-  - component: {fileID: 8876373655814589314}
   m_Layer: 0
   m_Name: musical_instrument_001.004
   m_TagString: Untagged
@@ -23794,15 +23020,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8876373655814589314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9163112475960593578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780b6bc5fd7f427ab7142c3fcf35ad7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.KeyView

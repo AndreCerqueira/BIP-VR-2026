@@ -10,102 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c10e7055bf9b4858a15a3b14abe8e934, type: 3}
-  m_Name: TwinkleTwinkle
+  m_Name: OdeToJoy
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.SheetMusicSO
-  _title: Twinkle Twinkle Little Star
+  _title: Ode to Joy
   _beatsPerMeasure: 4
   _measures:
   - _notes:
-    - _midiNote: 60
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 60
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 67
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 67
-      _duration: 1
-      _isRest: 0
-  - _notes:
-    - _midiNote: 69
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 69
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 67
-      _duration: 2
-      _isRest: 0
-  - _notes:
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
     - _midiNote: 64
       _duration: 1
       _isRest: 0
     - _midiNote: 64
       _duration: 1
       _isRest: 0
-  - _notes:
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 60
-      _duration: 2
-      _isRest: 0
-  - _notes:
-    - _midiNote: 67
+    - _midiNote: 65
       _duration: 1
       _isRest: 0
     - _midiNote: 67
       _duration: 1
       _isRest: 0
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
   - _notes:
-    - _midiNote: 64
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 65
       _duration: 1
       _isRest: 0
     - _midiNote: 64
       _duration: 1
       _isRest: 0
     - _midiNote: 62
-      _duration: 2
-      _isRest: 0
-  - _notes:
-    - _midiNote: 67
       _duration: 1
-      _isRest: 0
-    - _midiNote: 67
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 65
-      _duration: 1
-      _isRest: 0
-  - _notes:
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 62
-      _duration: 2
       _isRest: 0
   - _notes:
     - _midiNote: 60
@@ -114,30 +48,53 @@ MonoBehaviour:
     - _midiNote: 60
       _duration: 1
       _isRest: 0
-    - _midiNote: 67
+    - _midiNote: 62
       _duration: 1
       _isRest: 0
-    - _midiNote: 67
+    - _midiNote: 64
       _duration: 1
       _isRest: 0
   - _notes:
-    - _midiNote: 69
-      _duration: 1
+    - _midiNote: 64
+      _duration: 2
       _isRest: 0
-    - _midiNote: 69
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 67
+    - _midiNote: 62
       _duration: 2
       _isRest: 0
   - _notes:
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
     - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 67
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 67
       _duration: 1
       _isRest: 0
     - _midiNote: 65
       _duration: 1
       _isRest: 0
     - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 62
+      _duration: 1
+      _isRest: 0
+  - _notes:
+    - _midiNote: 60
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 60
+      _duration: 1
+      _isRest: 0
+    - _midiNote: 62
       _duration: 1
       _isRest: 0
     - _midiNote: 64
@@ -145,10 +102,7 @@ MonoBehaviour:
       _isRest: 0
   - _notes:
     - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-    - _midiNote: 62
-      _duration: 1
+      _duration: 2
       _isRest: 0
     - _midiNote: 60
       _duration: 2
