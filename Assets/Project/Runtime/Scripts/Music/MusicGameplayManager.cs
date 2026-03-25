@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Project.Runtime.Scripts.Leveling;
 using Project.Runtime.Scripts.Music.Data;
 using Project.Runtime.Scripts.Music.Utils;
 using Project.Runtime.Scripts.Piano;
@@ -23,17 +24,6 @@ namespace Project.Runtime.Scripts.Music
         private int _currentNoteIndex;
         private IReadOnlyList<SheetNoteView> _notes;
 
-        private void Start()
-        {
-            if (_sheetContainer == null || _colorScheme == null) return;
-
-            _sheetContainer.BuildSheet();
-            _notes = _sheetContainer.AllNotes;
-            
-            InitializeNotes();
-            HighlightAndAnimateCurrentNote();
-        }
-
         private void OnEnable()
         {
             KeyView.OnNotePlayed += HandleNotePlayed;
@@ -42,6 +32,38 @@ namespace Project.Runtime.Scripts.Music
         private void OnDisable()
         {
             KeyView.OnNotePlayed -= HandleNotePlayed;
+        }
+
+        public void SetBpm(int newBpm)
+        {
+            if (newBpm <= 0) return;
+            
+            _bpm = newBpm;
+        }
+
+        public void LoadLevel(LevelDataSO levelData)
+        {
+            if (_sheetContainer == null) return;
+
+            foreach (var key in KeyView.ActiveKeys.Values)
+            {
+                key.StopGlow();
+                key.IsExpectedNote = false;
+            }
+
+            if (levelData == null || levelData.SheetMusic == null)
+            {
+                _sheetContainer.ClearSheet();
+                _notes = null;
+                return;
+            }
+
+            _sheetContainer.LoadSheet(levelData.SheetMusic);
+            _notes = _sheetContainer.AllNotes;
+            _currentNoteIndex = 0;
+
+            InitializeNotes();
+            HighlightAndAnimateCurrentNote();
         }
 
         private void InitializeNotes()
