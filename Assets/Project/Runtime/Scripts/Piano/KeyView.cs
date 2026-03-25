@@ -24,6 +24,7 @@ namespace Project.Runtime.Scripts.Piano
 
         private AudioSource _audioSource;
         private Renderer _renderer;
+        private Rigidbody _rigidbody;
         private Vector3 _originalPosition;
         private Color _defaultColor;
         private Color _originalColor;
@@ -48,9 +49,16 @@ namespace Project.Runtime.Scripts.Piano
         {
             _audioSource = GetComponent<AudioSource>();
             _renderer = GetComponent<Renderer>();
+            _rigidbody = GetComponent<Rigidbody>();
             
             if (_renderer != null)
                 _defaultColor = _renderer.material.color;
+
+            if (_rigidbody != null)
+            {
+                _rigidbody.useGravity = false;
+                _rigidbody.isKinematic = true;
+            }
         }
 
         private void OnDestroy()
