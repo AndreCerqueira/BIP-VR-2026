@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Project.Runtime.Scripts.Music;
+using Project.Runtime.Scripts.UI;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +19,8 @@ namespace Project.Runtime.Scripts.Piano
         public bool IsWhiteKey { get; private set; }
         public string NoteName { get; private set; }
         public string LabelText { get; private set; }
+        public float ExpectedDuration { get; set; }
+        public bool IsExpectedNote { get; set; }
 
         private AudioSource _audioSource;
         private Renderer _renderer;
@@ -26,6 +30,7 @@ namespace Project.Runtime.Scripts.Piano
         private Color _pressedColor;
         private bool _isPlaying;
         private bool _hasCustomColor;
+        private bool _isShowingIndicator;
         private float _pressDepth;
         private float _currentGlowIntensity;
         private GameObject _currentLabel;
@@ -79,10 +84,11 @@ namespace Project.Runtime.Scripts.Piano
                 _pressDepth = BLACK_KEY_PRESS_DEPTH;
             
             var clip = PianoSoundGenerator.CreateTone(midiNote);
-            if (clip == null) return;
-            
-            _audioSource.clip = clip;
-            _audioSource.playOnAwake = false;
+            if (clip != null)
+            {
+                _audioSource.clip = clip;
+                _audioSource.playOnAwake = false;
+            }
         }
 
         public void SetHighlight(bool applyColor, Color customColor, GameObject labelPrefab = null)
@@ -178,6 +184,13 @@ namespace Project.Runtime.Scripts.Piano
                 _renderer.material.DOColor(_pressedColor, ANIMATION_DURATION);
             }
 
+            if (IsExpectedNote)
+            {
+                _isShowingIndicator = true;
+                if (NoteDurationIndicatorView.Instance != null)
+                    NoteDurationIndicatorView.Instance.Show(transform, ExpectedDuration, IsWhiteKey);
+            }
+
             OnNotePlayed?.Invoke(MidiNote);
         }
         
@@ -194,6 +207,13 @@ namespace Project.Runtime.Scripts.Piano
             {
                 _renderer.material.DOKill();
                 _renderer.material.DOColor(_originalColor, ANIMATION_DURATION);
+            }
+
+            if (_isShowingIndicator)
+            {
+                _isShowingIndicator = false;
+                if (NoteDurationIndicatorView.Instance != null)
+                    NoteDurationIndicatorView.Instance.Hide();
             }
         }
     }

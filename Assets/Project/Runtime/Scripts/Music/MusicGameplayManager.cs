@@ -12,6 +12,9 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField] private MusicSheetContainer _sheetContainer;
         [SerializeField] private NoteColorSchemeSO _colorScheme;
 
+        [Header("Timing Settings")]
+        [SerializeField] private int _bpm = 120;
+
         [Header("Piano Glow Settings")]
         [SerializeField] private float _glowDuration = 0.5f;
         [SerializeField] private float _minGlowIntensity = 0.5f;
@@ -67,7 +70,14 @@ namespace Project.Runtime.Scripts.Music
             currentNote.StartIdleAnimation();
 
             if (KeyView.ActiveKeys.TryGetValue(currentNote.MidiNote, out var key))
+            {
+                var secondsPerBeat = 60f / _bpm;
+                var realDurationInSeconds = currentNote.Duration * secondsPerBeat;
+                
+                key.ExpectedDuration = realDurationInSeconds;
+                key.IsExpectedNote = true;
                 key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
+            }
         }
 
         private void HandleNotePlayed(int midiNote)
@@ -83,7 +93,10 @@ namespace Project.Runtime.Scripts.Music
                 currentNote.SetColor(_colorScheme.DefaultColor);
                 
                 if (KeyView.ActiveKeys.TryGetValue(midiNote, out var key))
+                {
                     key.StopGlow();
+                    key.IsExpectedNote = false;
+                }
                 
                 AdvanceToNextNote();
             }
