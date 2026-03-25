@@ -12,7 +12,7 @@ namespace Project.Runtime.Scripts.Piano
         private Vector3 _originalPosition;
         private Color _originalColor;
         private Color _pressedColor;
-        private bool _isPlaying;
+        public bool _isPlaying;
         private bool _hasCustomColor;
         private float _pressDepth;
         
