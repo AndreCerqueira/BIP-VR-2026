@@ -202,7 +202,7 @@ namespace Project.Runtime.Scripts.Piano
             OnNotePlayed?.Invoke(MidiNote);
         }
         
-        private void ReleaseKey()
+        public void ReleaseKey()
         {
             if (!_isPlaying) return;
             
