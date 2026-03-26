@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Piano
       objectReference: {fileID: 0}
+    - target: {fileID: 5115408293573510065, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6440758276852320545, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -627,6 +631,10 @@ PrefabInstance:
     - target: {fileID: 6440758276852320545, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024513872135742059, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8639643280280568293, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_Camera

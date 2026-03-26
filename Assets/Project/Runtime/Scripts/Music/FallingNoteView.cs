@@ -15,13 +15,18 @@ namespace Project.Runtime.Scripts.Music
         private Material _materialInstance;
         private float _targetY;
         private float _hitTime;
+        private string _colorProperty = "_Color";
         
         private const float FADE_DURATION = 0.1f;
 
         private void Awake()
         {
-            if (_renderer != null)
-                _materialInstance = _renderer.material;
+            if (_renderer == null) return;
+            
+            _materialInstance = _renderer.material;
+            
+            if (_materialInstance.HasProperty("_BaseColor"))
+                _colorProperty = "_BaseColor";
         }
 
         public void Initialize(Transform targetKey, float hitTime, float length, Color color, float targetY)
@@ -41,7 +46,7 @@ namespace Project.Runtime.Scripts.Music
             if (_materialInstance != null)
             {
                 color.a = _defaultAlpha;
-                _materialInstance.color = color;
+                _materialInstance.SetColor(_colorProperty, color);
             }
         }
 
@@ -57,14 +62,22 @@ namespace Project.Runtime.Scripts.Music
 
         public void HandleHit()
         {
-            if (_materialInstance != null)
-                _materialInstance.DOFade(_hitAlpha, FADE_DURATION);
+            if (_materialInstance == null) return;
+            
+            var currentColor = _materialInstance.GetColor(_colorProperty);
+            currentColor.a = _hitAlpha;
+            
+            _materialInstance.DOColor(currentColor, _colorProperty, FADE_DURATION);
         }
 
         public void HandleMiss()
         {
-            if (_materialInstance != null)
-                _materialInstance.DOColor(Color.red, FADE_DURATION);
+            if (_materialInstance == null) return;
+            
+            var missColor = Color.red;
+            missColor.a = _defaultAlpha;
+            
+            _materialInstance.DOColor(missColor, _colorProperty, FADE_DURATION);
         }
 
         private void OnDestroy()
