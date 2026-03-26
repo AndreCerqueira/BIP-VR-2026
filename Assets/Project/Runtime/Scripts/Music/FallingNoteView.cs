@@ -8,11 +8,14 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Vector3 _targetOffset;
         
+        [Header("Visual Settings")]
+        [SerializeField, Range(0f, 1f)] private float _defaultAlpha = 0.8f;
+        [SerializeField, Range(0f, 1f)] private float _hitAlpha = 0.4f;
+        
         private Material _materialInstance;
         private float _targetY;
         private float _hitTime;
         
-        private const float HIT_ALPHA = 0.5f;
         private const float FADE_DURATION = 0.1f;
 
         private void Awake()
@@ -36,7 +39,10 @@ namespace Project.Runtime.Scripts.Music
             transform.localScale = scale;
             
             if (_materialInstance != null)
+            {
+                color.a = _defaultAlpha;
                 _materialInstance.color = color;
+            }
         }
 
         public void UpdatePosition(float currentSongTime, float fallSpeed)
@@ -52,7 +58,13 @@ namespace Project.Runtime.Scripts.Music
         public void HandleHit()
         {
             if (_materialInstance != null)
-                _materialInstance.DOFade(HIT_ALPHA, FADE_DURATION);
+                _materialInstance.DOFade(_hitAlpha, FADE_DURATION);
+        }
+
+        public void HandleMiss()
+        {
+            if (_materialInstance != null)
+                _materialInstance.DOColor(Color.red, FADE_DURATION);
         }
 
         private void OnDestroy()

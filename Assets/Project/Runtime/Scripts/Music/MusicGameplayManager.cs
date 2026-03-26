@@ -3,6 +3,7 @@ using Project.Runtime.Scripts.Leveling;
 using Project.Runtime.Scripts.Music.Data;
 using Project.Runtime.Scripts.Music.Utils;
 using Project.Runtime.Scripts.Piano;
+using TMPro;
 using UnityEngine;
 
 namespace Project.Runtime.Scripts.Music
@@ -14,6 +15,7 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField] private NoteColorSchemeSO _colorScheme;
         [SerializeField] private FallingNoteView _fallingNotePrefab;
         [SerializeField] private Transform _fallingNotesContainer;
+        [SerializeField] private TMP_Text _scoreText;
 
         [Header("Timing Settings")]
         [SerializeField] private int _bpm = 120;
@@ -46,6 +48,9 @@ namespace Project.Runtime.Scripts.Music
         private float _songTime;
         private float _secondsPerBeat;
         private int _currentNoteIndex;
+        private int _totalPlayableNotes;
+        private int _hitNotes;
+        private int _combo;
 
         private const float SECONDS_PER_MINUTE = 60f;
         private const float OFF_SCREEN_CLEANUP_DELAY = 1f;
@@ -95,6 +100,7 @@ namespace Project.Runtime.Scripts.Music
 
             InitializeNotes();
             BuildTimeline(levelData.SheetMusic);
+            UpdateScoreUI();
             HighlightCurrentExpectedNote();
         }
 
@@ -103,6 +109,9 @@ namespace Project.Runtime.Scripts.Music
             _hasGameStarted = false;
             _songTime = 0f;
             _currentNoteIndex = 0;
+            _totalPlayableNotes = 0;
+            _hitNotes = 0;
+            _combo = 0;
 
             foreach (var timing in _noteTimings)
             {
@@ -117,6 +126,8 @@ namespace Project.Runtime.Scripts.Music
                 key.StopGlow();
                 key.IsExpectedNote = false;
             }
+            
+            UpdateScoreUI();
         }
 
         private void InitializeNotes()
@@ -151,19 +162,24 @@ namespace Project.Runtime.Scripts.Music
                         IsProcessed = false
                     };
 
-                    if (!note.IsRest && KeyView.ActiveKeys.TryGetValue(note.MidiNote, out var key))
+                    if (!note.IsRest)
                     {
-                        var fallingNote = Instantiate(_fallingNotePrefab, _fallingNotesContainer);
-                        var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
-                        var color = _colorScheme.GetColorFromName(baseName);
+                        _totalPlayableNotes++;
                         
-                        var targetY = key.transform.position.y;
-                        var visualLength = (durationInSeconds * _noteVisualRatio) * _fallSpeedMultiplier;
-                        
-                        fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
-                        fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
-                        
-                        timing.FallingView = fallingNote;
+                        if (KeyView.ActiveKeys.TryGetValue(note.MidiNote, out var key))
+                        {
+                            var fallingNote = Instantiate(_fallingNotePrefab, _fallingNotesContainer);
+                            var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
+                            var color = _colorScheme.GetColorFromName(baseName);
+                            
+                            var targetY = key.transform.position.y;
+                            var visualLength = (durationInSeconds * _noteVisualRatio) * _fallSpeedMultiplier;
+                            
+                            fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
+                            fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
+                            
+                            timing.FallingView = fallingNote;
+                        }
                     }
 
                     _noteTimings.Add(timing);
@@ -206,15 +222,7 @@ namespace Project.Runtime.Scripts.Music
             }
 
             if (_songTime > currentTiming.HitTime + _hitWindow)
-            {
-                currentTiming.IsProcessed = true;
-                
-                if (currentTiming.FallingView != null)
-                    currentTiming.FallingView.HandleHit();
-                    
-                ResetCurrentNoteHighlight(currentTiming);
-                AdvanceToNextNote();
-            }
+                ProcessMiss(currentTiming);
         }
 
         private void HandleNotePlayed(int midiNote)
@@ -244,12 +252,36 @@ namespace Project.Runtime.Scripts.Music
         private void ProcessHit(NoteTiming timing)
         {
             timing.IsProcessed = true;
+            _hitNotes++;
+            _combo++;
+            UpdateScoreUI();
             
             if (timing.FallingView != null)
                 timing.FallingView.HandleHit();
                 
             ResetCurrentNoteHighlight(timing);
             AdvanceToNextNote();
+        }
+
+        private void ProcessMiss(NoteTiming timing)
+        {
+            timing.IsProcessed = true;
+            _combo = 0;
+            UpdateScoreUI();
+            
+            if (timing.FallingView != null)
+                timing.FallingView.HandleMiss();
+                
+            ResetCurrentNoteHighlight(timing);
+            AdvanceToNextNote();
+        }
+
+        private void UpdateScoreUI()
+        {
+            if (_scoreText == null) return;
+            
+            var percentage = _totalPlayableNotes > 0 ? ((float)_hitNotes / _totalPlayableNotes) * 100f : 0f;
+            _scoreText.text = $"Score: {percentage:F1}% | Combo: {_combo}";
         }
 
         private void ResetCurrentNoteHighlight(NoteTiming timing)
