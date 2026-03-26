@@ -178,10 +178,9 @@ namespace Project.Runtime.Scripts.Music
                             var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
                             var color = _colorScheme.GetColorFromName(baseName);
                             
-                            var targetY = key.transform.position.y;
                             var visualLength = (activeDuration * _noteVisualRatio) * _fallSpeedMultiplier;
                             
-                            fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
+                            fallingNote.Initialize(key.transform, currentTime, visualLength, color);
                             fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
                             
                             timing.FallingView = fallingNote;
@@ -236,9 +235,7 @@ namespace Project.Runtime.Scripts.Music
                         indexChanged = true;
                     }
                     else
-                    {
                         break;
-                    }
                 }
                 else
                 {
@@ -249,9 +246,7 @@ namespace Project.Runtime.Scripts.Music
                         indexChanged = true;
                     }
                     else
-                    {
                         break;
-                    }
                 }
             }
 
