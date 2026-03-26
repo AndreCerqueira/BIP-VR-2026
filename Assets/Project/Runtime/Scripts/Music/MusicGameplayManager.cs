@@ -3,6 +3,7 @@ using Project.Runtime.Scripts.Leveling;
 using Project.Runtime.Scripts.Music.Data;
 using Project.Runtime.Scripts.Music.Utils;
 using Project.Runtime.Scripts.Piano;
+using TMPro;
 using UnityEngine;
 
 namespace Project.Runtime.Scripts.Music
@@ -12,17 +13,47 @@ namespace Project.Runtime.Scripts.Music
         [Header("References")]
         [SerializeField] private MusicSheetContainer _sheetContainer;
         [SerializeField] private NoteColorSchemeSO _colorScheme;
+        [SerializeField] private FallingNoteView _fallingNotePrefab;
+        [SerializeField] private Transform _fallingNotesContainer;
+        [SerializeField] private TMP_Text _scoreText;
 
         [Header("Timing Settings")]
         [SerializeField] private int _bpm = 120;
+        [SerializeField] private float _hitWindow = 0.3f;
 
         [Header("Piano Glow Settings")]
         [SerializeField] private float _glowDuration = 0.5f;
         [SerializeField] private float _minGlowIntensity = 0.5f;
         [SerializeField] private float _maxGlowIntensity = 3.5f;
 
+        [Header("Rhythm Settings")]
+        [SerializeField] private float _fallSpeedMultiplier = 1.0f;
+        [SerializeField, Range(0.1f, 1f)] private float _noteVisualRatio = 0.8f;
+
+        private class NoteTiming
+        {
+            public int SheetIndex;
+            public int MidiNote;
+            public float HitTime;
+            public float Duration;
+            public bool IsRest;
+            public FallingNoteView FallingView;
+            public bool IsProcessed;
+        }
+
+        private IReadOnlyList<SheetNoteView> _sheetNoteViews;
+        private readonly List<NoteTiming> _noteTimings = new List<NoteTiming>();
+        
+        private bool _hasGameStarted;
+        private float _songTime;
+        private float _secondsPerBeat;
         private int _currentNoteIndex;
-        private IReadOnlyList<SheetNoteView> _notes;
+        private int _totalPlayableNotes;
+        private int _hitNotes;
+        private int _combo;
+
+        private const float SECONDS_PER_MINUTE = 60f;
+        private const float OFF_SCREEN_CLEANUP_DELAY = 1f;
 
         private void OnEnable()
         {
@@ -34,6 +65,15 @@ namespace Project.Runtime.Scripts.Music
             KeyView.OnNotePlayed -= HandleNotePlayed;
         }
 
+        private void Update()
+        {
+            if (!_hasGameStarted) return;
+
+            _songTime += Time.deltaTime;
+
+            UpdateGameProgress();
+        }
+
         public void SetBpm(int newBpm)
         {
             if (newBpm <= 0) return;
@@ -43,91 +83,257 @@ namespace Project.Runtime.Scripts.Music
 
         public void LoadLevel(LevelDataSO levelData)
         {
+            ClearGame();
+
             if (_sheetContainer == null) return;
+
+            if (levelData == null || levelData.SheetMusic == null)
+            {
+                _sheetContainer.ClearSheet();
+                _sheetNoteViews = null;
+                return;
+            }
+
+            _secondsPerBeat = SECONDS_PER_MINUTE / _bpm;
+            _sheetContainer.LoadSheet(levelData.SheetMusic);
+            _sheetNoteViews = _sheetContainer.AllNotes;
+
+            InitializeNotes();
+            BuildTimeline(levelData.SheetMusic);
+            UpdateScoreUI();
+            HighlightCurrentExpectedNote();
+        }
+
+        private void ClearGame()
+        {
+            _hasGameStarted = false;
+            _songTime = 0f;
+            _currentNoteIndex = 0;
+            _totalPlayableNotes = 0;
+            _hitNotes = 0;
+            _combo = 0;
+
+            foreach (var timing in _noteTimings)
+            {
+                if (timing.FallingView != null)
+                    Destroy(timing.FallingView.gameObject);
+            }
+            
+            _noteTimings.Clear();
 
             foreach (var key in KeyView.ActiveKeys.Values)
             {
                 key.StopGlow();
                 key.IsExpectedNote = false;
             }
-
-            if (levelData == null || levelData.SheetMusic == null)
-            {
-                _sheetContainer.ClearSheet();
-                _notes = null;
-                return;
-            }
-
-            _sheetContainer.LoadSheet(levelData.SheetMusic);
-            _notes = _sheetContainer.AllNotes;
-            _currentNoteIndex = 0;
-
-            InitializeNotes();
-            HighlightAndAnimateCurrentNote();
+            
+            UpdateScoreUI();
         }
 
         private void InitializeNotes()
         {
-            if (_notes == null) return;
+            if (_sheetNoteViews == null) return;
             
-            foreach (var note in _notes)
-                note.SetColor(_colorScheme.DefaultColor);
+            foreach (var noteView in _sheetNoteViews)
+                noteView.SetColor(_colorScheme.DefaultColor);
         }
 
-        private void HighlightAndAnimateCurrentNote()
+        private void BuildTimeline(SheetMusicSO sheetMusic)
         {
-            if (_notes == null) return;
+            if (_fallingNotePrefab == null) return;
+            if (_fallingNotesContainer == null) return;
 
-            while (_currentNoteIndex < _notes.Count && _notes[_currentNoteIndex].IsRest)
-                _currentNoteIndex++;
+            var currentTime = 0f;
+            var sheetIndex = 0;
 
-            if (_currentNoteIndex >= _notes.Count) return;
-
-            var currentNote = _notes[_currentNoteIndex];
-            
-            var baseName = MidiHelper.MidiToBaseNoteName(currentNote.MidiNote);
-            var targetColor = _colorScheme.GetColorFromName(baseName);
-            
-            currentNote.SetColor(targetColor);
-            currentNote.StartIdleAnimation();
-
-            if (KeyView.ActiveKeys.TryGetValue(currentNote.MidiNote, out var key))
+            foreach (var measure in sheetMusic.Measures)
             {
-                var secondsPerBeat = 60f / _bpm;
-                var realDurationInSeconds = currentNote.Duration * secondsPerBeat;
-                
-                key.ExpectedDuration = realDurationInSeconds;
-                key.IsExpectedNote = true;
-                key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
+                foreach (var note in measure.Notes)
+                {
+                    var durationInSeconds = note.Duration * _secondsPerBeat;
+
+                    var timing = new NoteTiming
+                    {
+                        SheetIndex = sheetIndex,
+                        MidiNote = note.MidiNote,
+                        HitTime = currentTime,
+                        Duration = durationInSeconds,
+                        IsRest = note.IsRest,
+                        IsProcessed = false
+                    };
+
+                    if (!note.IsRest)
+                    {
+                        _totalPlayableNotes++;
+                        
+                        if (KeyView.ActiveKeys.TryGetValue(note.MidiNote, out var key))
+                        {
+                            var fallingNote = Instantiate(_fallingNotePrefab, _fallingNotesContainer);
+                            var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
+                            var color = _colorScheme.GetColorFromName(baseName);
+                            
+                            var targetY = key.transform.position.y;
+                            var visualLength = (durationInSeconds * _noteVisualRatio) * _fallSpeedMultiplier;
+                            
+                            fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
+                            fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
+                            
+                            timing.FallingView = fallingNote;
+                        }
+                    }
+
+                    _noteTimings.Add(timing);
+
+                    currentTime += durationInSeconds;
+                    sheetIndex++;
+                }
             }
+        }
+
+        private void UpdateGameProgress()
+        {
+            foreach (var timing in _noteTimings)
+            {
+                if (timing.FallingView != null)
+                {
+                    timing.FallingView.UpdatePosition(_songTime, _fallSpeedMultiplier);
+                    
+                    if (_songTime > timing.HitTime + timing.Duration + OFF_SCREEN_CLEANUP_DELAY)
+                    {
+                        Destroy(timing.FallingView.gameObject);
+                        timing.FallingView = null;
+                    }
+                }
+            }
+
+            if (_currentNoteIndex >= _noteTimings.Count) return;
+
+            var currentTiming = _noteTimings[_currentNoteIndex];
+
+            if (currentTiming.IsRest)
+            {
+                if (_songTime >= currentTiming.HitTime + currentTiming.Duration)
+                {
+                    currentTiming.IsProcessed = true;
+                    AdvanceToNextNote();
+                }
+                
+                return;
+            }
+
+            if (_songTime > currentTiming.HitTime + _hitWindow)
+                ProcessMiss(currentTiming);
         }
 
         private void HandleNotePlayed(int midiNote)
         {
-            if (_notes == null || _currentNoteIndex >= _notes.Count) return;
+            if (_currentNoteIndex >= _noteTimings.Count) return;
 
-            var currentNote = _notes[_currentNoteIndex];
-            if (currentNote.IsRest) return;
+            var currentTiming = _noteTimings[_currentNoteIndex];
+            
+            if (currentTiming.IsRest || currentTiming.IsProcessed) return;
 
-            if (currentNote.MidiNote == midiNote)
+            if (!_hasGameStarted)
             {
-                currentNote.StopIdleAnimation();
-                currentNote.SetColor(_colorScheme.DefaultColor);
-                
-                if (KeyView.ActiveKeys.TryGetValue(midiNote, out var key))
+                if (currentTiming.MidiNote == midiNote)
                 {
-                    key.StopGlow();
-                    key.IsExpectedNote = false;
+                    _hasGameStarted = true;
+                    _songTime = 0f;
+                    ProcessHit(currentTiming);
                 }
                 
-                AdvanceToNextNote();
+                return;
+            }
+
+            if (currentTiming.MidiNote == midiNote && Mathf.Abs(_songTime - currentTiming.HitTime) <= _hitWindow)
+                ProcessHit(currentTiming);
+        }
+
+        private void ProcessHit(NoteTiming timing)
+        {
+            timing.IsProcessed = true;
+            _hitNotes++;
+            _combo++;
+            UpdateScoreUI();
+            
+            if (timing.FallingView != null)
+                timing.FallingView.HandleHit();
+                
+            ResetCurrentNoteHighlight(timing);
+            AdvanceToNextNote();
+        }
+
+        private void ProcessMiss(NoteTiming timing)
+        {
+            timing.IsProcessed = true;
+            _combo = 0;
+            UpdateScoreUI();
+            
+            if (timing.FallingView != null)
+                timing.FallingView.HandleMiss();
+                
+            ResetCurrentNoteHighlight(timing);
+            AdvanceToNextNote();
+        }
+
+        private void UpdateScoreUI()
+        {
+            if (_scoreText == null) return;
+            
+            var percentage = _totalPlayableNotes > 0 ? ((float)_hitNotes / _totalPlayableNotes) * 100f : 0f;
+            _scoreText.text = $"Score: {percentage:F1}% | Combo: {_combo}";
+        }
+
+        private void ResetCurrentNoteHighlight(NoteTiming timing)
+        {
+            if (_sheetNoteViews != null && timing.SheetIndex < _sheetNoteViews.Count)
+            {
+                var view = _sheetNoteViews[timing.SheetIndex];
+                view.StopIdleAnimation();
+                view.SetColor(_colorScheme.DefaultColor);
+            }
+            
+            if (KeyView.ActiveKeys.TryGetValue(timing.MidiNote, out var key))
+            {
+                key.StopGlow();
+                key.IsExpectedNote = false;
             }
         }
 
         private void AdvanceToNextNote()
         {
             _currentNoteIndex++;
-            HighlightAndAnimateCurrentNote();
+            HighlightCurrentExpectedNote();
+        }
+
+        private void HighlightCurrentExpectedNote()
+        {
+            if (_currentNoteIndex >= _noteTimings.Count) return;
+
+            var currentTiming = _noteTimings[_currentNoteIndex];
+            
+            if (currentTiming.IsRest)
+            {
+                AdvanceToNextNote();
+                return;
+            }
+
+            if (_sheetNoteViews != null && currentTiming.SheetIndex < _sheetNoteViews.Count)
+            {
+                var view = _sheetNoteViews[currentTiming.SheetIndex];
+                var baseName = MidiHelper.MidiToBaseNoteName(currentTiming.MidiNote);
+                var targetColor = _colorScheme.GetColorFromName(baseName);
+                
+                view.SetColor(targetColor);
+                view.StartIdleAnimation();
+            }
+
+            if (KeyView.ActiveKeys.TryGetValue(currentTiming.MidiNote, out var key))
+            {
+                key.ExpectedDuration = currentTiming.Duration;
+                key.IsExpectedNote = true;
+                key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
+            }
         }
     }
 }
