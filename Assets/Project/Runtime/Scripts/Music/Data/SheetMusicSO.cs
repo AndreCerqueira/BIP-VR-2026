@@ -22,7 +22,9 @@ namespace Project.Runtime.Scripts.Music.Data
             foreach (var note in allNotes)
             {
                 currentMeasure.AddNote(note);
-                currentBeatCount += note.Duration;
+                
+                if (!note.PlayWithNext)
+                    currentBeatCount += note.Duration;
 
                 if (currentBeatCount >= _beatsPerMeasure)
                 {

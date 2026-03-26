@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Level_TwinkleTwinkle
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Leveling.LevelDataSO
   _levelName: Twinkle Twinkle Little Star
-  _difficulty: 2
+  _difficulty: 3
+  _pianoRange: 0
   _sheetMusic: {fileID: 11400000, guid: bcf163b5d217dc242bc06858ed392a80, type: 2}
