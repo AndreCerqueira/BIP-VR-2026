@@ -180,7 +180,7 @@ namespace Project.Runtime.Scripts.Piano
             
             _audioSource.DOKill();
             _audioSource.volume = 1f;
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_audioSource.clip);
             
             transform.DOKill();
             transform.DOLocalMoveY(_originalPosition.y - _pressDepth, ANIMATION_DURATION).SetEase(Ease.Linear);
