@@ -21,6 +21,9 @@ public class FingersRayShoot : MonoBehaviour
 	float releaseDistance = 0.004f;
 
 	[SerializeField]
+	float underKeyReleaseDistance = 0.006f;
+
+	[SerializeField]
 	LayerMask keyLayerMask = ~0;
 
 	private KeyView[] lastPressedKeys = new KeyView[10];
@@ -93,8 +96,11 @@ public class FingersRayShoot : MonoBehaviour
 
 			if (currentPressed != null)
 			{
+				bool isUnderCurrentKey = IsUnderKey(currentPressed.transform, fingerTransform.position);
+				float activeReleaseDistance = isUnderCurrentKey ? underKeyReleaseDistance : releaseDistance;
+
 				bool switchedTarget = nearestKey != null && nearestKey != currentPressed;
-				bool tooFar = nearestKey == currentPressed && nearestDistance > releaseDistance;
+				bool tooFar = nearestKey == currentPressed && nearestDistance > activeReleaseDistance;
 				bool noKeyNearby = nearestKey == null;
 
 				if (switchedTarget || tooFar || noKeyNearby)
@@ -115,6 +121,12 @@ public class FingersRayShoot : MonoBehaviour
 				lastPressedKeys[i] = nearestKey;
 			}
 		}
+	}
+
+	private static bool IsUnderKey(Transform keyTransform, Vector3 fingerPosition)
+	{
+		Vector3 localPosition = keyTransform.InverseTransformPoint(fingerPosition);
+		return localPosition.y < 0f;
 	}
 
 	private static float DistanceToCollider(Collider col, Vector3 point)

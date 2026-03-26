@@ -319,6 +319,7 @@ MonoBehaviour:
   overlapRadius: 0.012
   pressDistance: 0.002
   releaseDistance: 0.004
+  underKeyReleaseDistance: 0.006
   keyLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2223,13 +2224,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678565029}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf156d1fa93ab2b43a2480e3f907a9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveKeyboardAfterSpawn
   moveToPos: {fileID: 1756760790}
-  referencePoint: {fileID: 0}
+  referencePoint: {fileID: 1298389130}
   delay: 0.5
   surfaceOffset: 0.02
   pianoSizeOffset: 0.733
@@ -3622,6 +3623,7 @@ MonoBehaviour:
   overlapRadius: 0.012
   pressDistance: 0.002
   releaseDistance: 0.004
+  underKeyReleaseDistance: 0.006
   keyLayerMask:
     serializedVersion: 2
     m_Bits: 55
