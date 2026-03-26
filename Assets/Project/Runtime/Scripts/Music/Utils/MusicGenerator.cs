@@ -22,6 +22,7 @@ namespace Project.Runtime.Scripts.Music.Utils
         private const float QUARTER = 1f;
         private const float HALF = 2f;
         private const float WHOLE = 4f;
+        private const float DEFAULT_REST = 0.5f;
 
         [Button("Generate: Twinkle Twinkle")]
         public void GenerateTwinkleTwinkle()
@@ -73,7 +74,8 @@ namespace Project.Runtime.Scripts.Music.Utils
                 new SheetNote(C4, HALF)
             });
 
-            _musicData.GenerateMeasures(allNotes);
+            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
+            _musicData.GenerateMeasures(spacedNotes);
             SaveMusicData();
         }
 
@@ -115,7 +117,8 @@ namespace Project.Runtime.Scripts.Music.Utils
                 new SheetNote(C4, WHOLE)
             });
 
-            _musicData.GenerateMeasures(allNotes);
+            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
+            _musicData.GenerateMeasures(spacedNotes);
             SaveMusicData();
         }
 
@@ -142,8 +145,22 @@ namespace Project.Runtime.Scripts.Music.Utils
             allNotes.AddRange(partA);
             allNotes.AddRange(new[] { new SheetNote(D4, HALF), new SheetNote(C4, HALF) });
 
-            _musicData.GenerateMeasures(allNotes);
+            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
+            _musicData.GenerateMeasures(spacedNotes);
             SaveMusicData();
+        }
+
+        private List<SheetNote> InsertRests(List<SheetNote> originalNotes, float restDuration)
+        {
+            var notesWithRests = new List<SheetNote>();
+            
+            foreach (var note in originalNotes)
+            {
+                notesWithRests.Add(note);
+                notesWithRests.Add(new SheetNote(0, restDuration, true));
+            }
+            
+            return notesWithRests;
         }
 
         private void SaveMusicData()

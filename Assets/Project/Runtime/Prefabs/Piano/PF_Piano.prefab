@@ -6985,7 +6985,7 @@ RectTransform:
   m_Father: {fileID: 4086203247128607604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10765,7 +10765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1685591274840616201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10814,7 +10814,7 @@ MonoBehaviour:
   _gameplayManager: {fileID: 2325922202316458841}
   _minBpm: 60
   _maxBpm: 320
-  _defaultBpm: 160
+  _defaultBpm: 100
 --- !u!1 &4502297365726829824
 GameObject:
   m_ObjectHideFlags: 0
@@ -16228,7 +16228,7 @@ RectTransform:
   m_Father: {fileID: 3943055247076457093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24001,13 +24001,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _bpm
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _sheetContainer
       value: 
       objectReference: {fileID: 5412746477985256127}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _noteVisualRatio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _fallingNotePrefab
       value: 
       objectReference: {fileID: 6360336993416572942, guid: 355f580dd08ee864596eccefdc16bbfa, type: 3}
+    - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _fallSpeedMultiplier
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _fallingNotesContainer
       value: 

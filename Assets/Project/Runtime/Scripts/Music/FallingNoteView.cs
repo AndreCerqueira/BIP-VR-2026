@@ -8,13 +8,12 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Vector3 _targetOffset;
         
-        private Tweener _fallTween;
-        private Tweener _fadeTween;
         private Material _materialInstance;
+        private float _targetY;
+        private float _hitTime;
         
-        private const float FADE_DURATION = 0.2f;
-
-        public float TargetY { get; private set; }
+        private const float HIT_ALPHA = 0.5f;
+        private const float FADE_DURATION = 0.1f;
 
         private void Awake()
         {
@@ -22,13 +21,15 @@ namespace Project.Runtime.Scripts.Music
                 _materialInstance = _renderer.material;
         }
 
-        public void Initialize(Transform targetKey, float startY, float length, Color color, float targetY)
+        public void Initialize(Transform targetKey, float hitTime, float length, Color color, float targetY)
         {
-            TargetY = targetY + (length / 2f) + _targetOffset.y;
+            if (targetKey == null) return;
+
+            _hitTime = hitTime;
+            _targetY = targetY + (length / 2f) + _targetOffset.y;
             
-            var position = targetKey.position + _targetOffset;
-            position.y = startY + (length / 2f);
-            transform.position = position;
+            var startPos = targetKey.position + _targetOffset;
+            transform.position = startPos;
             
             var scale = transform.localScale;
             scale.y = length;
@@ -38,57 +39,29 @@ namespace Project.Runtime.Scripts.Music
                 _materialInstance.color = color;
         }
 
-        public void StartFalling(float fallSpeed)
+        public void UpdatePosition(float currentSongTime, float fallSpeed)
         {
-            var distance = transform.position.y - TargetY;
-            if (distance <= 0f) return;
+            var timeDifference = _hitTime - currentSongTime;
+            var currentY = _targetY + (timeDifference * fallSpeed);
             
-            var duration = distance / fallSpeed;
-            
-            _fallTween = transform.DOMoveY(TargetY, duration).SetEase(Ease.Linear).OnComplete(HandleMiss);
+            var pos = transform.position;
+            pos.y = currentY;
+            transform.position = pos;
         }
 
         public void HandleHit()
         {
-            KillTweens();
-            
             if (_materialInstance != null)
-            {
-                _fadeTween = _materialInstance.DOFade(0f, FADE_DURATION).OnComplete(() => Destroy(gameObject));
-                return;
-            }
-            
-            Destroy(gameObject);
+                _materialInstance.DOFade(HIT_ALPHA, FADE_DURATION);
         }
 
-        private void HandleMiss()
-        {
-            KillTweens();
-            
-            if (_materialInstance != null)
-            {
-                _fadeTween = _materialInstance.DOFade(0f, FADE_DURATION).OnComplete(() => Destroy(gameObject));
-                return;
-            }
-            
-            Destroy(gameObject);
-        }
-
-        private void KillTweens()
-        {
-            if (_fallTween != null && _fallTween.IsActive())
-                _fallTween.Kill();
-                
-            if (_fadeTween != null && _fadeTween.IsActive())
-                _fadeTween.Kill();
-        }
-        
         private void OnDestroy()
         {
-            KillTweens();
-            
             if (_materialInstance != null)
+            {
+                _materialInstance.DOKill();
                 Destroy(_materialInstance);
+            }
         }
     }
 }

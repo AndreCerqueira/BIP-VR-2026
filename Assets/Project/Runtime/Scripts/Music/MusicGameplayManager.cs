@@ -17,6 +17,7 @@ namespace Project.Runtime.Scripts.Music
 
         [Header("Timing Settings")]
         [SerializeField] private int _bpm = 120;
+        [SerializeField] private float _hitWindow = 0.3f;
 
         [Header("Piano Glow Settings")]
         [SerializeField] private float _glowDuration = 0.5f;
@@ -24,18 +25,30 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField] private float _maxGlowIntensity = 3.5f;
 
         [Header("Rhythm Settings")]
-        [SerializeField] private float _fallSpeedMultiplier = 1f;
-        [SerializeField] private float _yOffsetTarget = 0.1f;
-        [SerializeField] private float _spawnYOffset = 5f;
+        [SerializeField] private float _fallSpeedMultiplier = 1.0f;
+        [SerializeField, Range(0.1f, 1f)] private float _noteVisualRatio = 0.8f;
 
-        private int _currentNoteIndex;
-        private IReadOnlyList<SheetNoteView> _notes;
+        private class NoteTiming
+        {
+            public int SheetIndex;
+            public int MidiNote;
+            public float HitTime;
+            public float Duration;
+            public bool IsRest;
+            public FallingNoteView FallingView;
+            public bool IsProcessed;
+        }
+
+        private IReadOnlyList<SheetNoteView> _sheetNoteViews;
+        private readonly List<NoteTiming> _noteTimings = new List<NoteTiming>();
+        
         private bool _hasGameStarted;
+        private float _songTime;
         private float _secondsPerBeat;
-        
-        private readonly List<FallingNoteView> _activeFallingNotes = new List<FallingNoteView>();
-        
+        private int _currentNoteIndex;
+
         private const float SECONDS_PER_MINUTE = 60f;
+        private const float OFF_SCREEN_CLEANUP_DELAY = 1f;
 
         private void OnEnable()
         {
@@ -47,6 +60,15 @@ namespace Project.Runtime.Scripts.Music
             KeyView.OnNotePlayed -= HandleNotePlayed;
         }
 
+        private void Update()
+        {
+            if (!_hasGameStarted) return;
+
+            _songTime += Time.deltaTime;
+
+            UpdateGameProgress();
+        }
+
         public void SetBpm(int newBpm)
         {
             if (newBpm <= 0) return;
@@ -56,172 +78,230 @@ namespace Project.Runtime.Scripts.Music
 
         public void LoadLevel(LevelDataSO levelData)
         {
-            ClearFallingNotes();
-            _hasGameStarted = false;
+            ClearGame();
 
             if (_sheetContainer == null) return;
+
+            if (levelData == null || levelData.SheetMusic == null)
+            {
+                _sheetContainer.ClearSheet();
+                _sheetNoteViews = null;
+                return;
+            }
+
+            _secondsPerBeat = SECONDS_PER_MINUTE / _bpm;
+            _sheetContainer.LoadSheet(levelData.SheetMusic);
+            _sheetNoteViews = _sheetContainer.AllNotes;
+
+            InitializeNotes();
+            BuildTimeline(levelData.SheetMusic);
+            HighlightCurrentExpectedNote();
+        }
+
+        private void ClearGame()
+        {
+            _hasGameStarted = false;
+            _songTime = 0f;
+            _currentNoteIndex = 0;
+
+            foreach (var timing in _noteTimings)
+            {
+                if (timing.FallingView != null)
+                    Destroy(timing.FallingView.gameObject);
+            }
+            
+            _noteTimings.Clear();
 
             foreach (var key in KeyView.ActiveKeys.Values)
             {
                 key.StopGlow();
                 key.IsExpectedNote = false;
             }
-
-            if (levelData == null || levelData.SheetMusic == null)
-            {
-                _sheetContainer.ClearSheet();
-                _notes = null;
-                return;
-            }
-
-            _secondsPerBeat = SECONDS_PER_MINUTE / _bpm;
-            _sheetContainer.LoadSheet(levelData.SheetMusic);
-            _notes = _sheetContainer.AllNotes;
-            _currentNoteIndex = 0;
-
-            InitializeNotes();
-            BuildFallingNotes(levelData.SheetMusic);
-            HighlightAndAnimateCurrentNote();
         }
 
-        private void ClearFallingNotes()
+        private void InitializeNotes()
         {
-            foreach (var note in _activeFallingNotes)
-            {
-                if (note != null)
-                    Destroy(note.gameObject);
-            }
+            if (_sheetNoteViews == null) return;
             
-            _activeFallingNotes.Clear();
+            foreach (var noteView in _sheetNoteViews)
+                noteView.SetColor(_colorScheme.DefaultColor);
         }
 
-        private void BuildFallingNotes(SheetMusicSO sheetMusic)
+        private void BuildTimeline(SheetMusicSO sheetMusic)
         {
             if (_fallingNotePrefab == null) return;
             if (_fallingNotesContainer == null) return;
 
-            var currentTime = 2f; 
-            var actualFallSpeed = (_bpm / 60f) * _fallSpeedMultiplier;
+            var currentTime = 0f;
+            var sheetIndex = 0;
 
             foreach (var measure in sheetMusic.Measures)
             {
                 foreach (var note in measure.Notes)
                 {
-                    if (note.IsRest)
+                    var durationInSeconds = note.Duration * _secondsPerBeat;
+
+                    var timing = new NoteTiming
                     {
-                        currentTime += note.Duration * _secondsPerBeat;
-                        continue;
+                        SheetIndex = sheetIndex,
+                        MidiNote = note.MidiNote,
+                        HitTime = currentTime,
+                        Duration = durationInSeconds,
+                        IsRest = note.IsRest,
+                        IsProcessed = false
+                    };
+
+                    if (!note.IsRest && KeyView.ActiveKeys.TryGetValue(note.MidiNote, out var key))
+                    {
+                        var fallingNote = Instantiate(_fallingNotePrefab, _fallingNotesContainer);
+                        var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
+                        var color = _colorScheme.GetColorFromName(baseName);
+                        
+                        var targetY = key.transform.position.y;
+                        var visualLength = (durationInSeconds * _noteVisualRatio) * _fallSpeedMultiplier;
+                        
+                        fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
+                        fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
+                        
+                        timing.FallingView = fallingNote;
                     }
 
-                    if (!KeyView.ActiveKeys.TryGetValue(note.MidiNote, out var key))
-                    {
-                        currentTime += note.Duration * _secondsPerBeat;
-                        continue;
-                    }
+                    _noteTimings.Add(timing);
 
-                    var fallingNote = Instantiate(_fallingNotePrefab, _fallingNotesContainer);
-                    var baseName = MidiHelper.MidiToBaseNoteName(note.MidiNote);
-                    var color = _colorScheme.GetColorFromName(baseName);
-            
-                    var targetY = key.transform.position.y;
-                    var distance = currentTime * actualFallSpeed;
-                    var startY = targetY + distance;
-                    var length = note.Duration * _secondsPerBeat * actualFallSpeed;
-            
-                    fallingNote.Initialize(key.transform, startY, length, color, targetY);
-                    _activeFallingNotes.Add(fallingNote);
-
-                    currentTime += note.Duration * _secondsPerBeat;
+                    currentTime += durationInSeconds;
+                    sheetIndex++;
                 }
             }
         }
 
-        private void StartGame()
+        private void UpdateGameProgress()
         {
-            _hasGameStarted = true;
-            
-            foreach (var fallingNote in _activeFallingNotes)
+            foreach (var timing in _noteTimings)
             {
-                if (fallingNote != null)
-                    fallingNote.StartFalling(_fallSpeedMultiplier);
+                if (timing.FallingView != null)
+                {
+                    timing.FallingView.UpdatePosition(_songTime, _fallSpeedMultiplier);
+                    
+                    if (_songTime > timing.HitTime + timing.Duration + OFF_SCREEN_CLEANUP_DELAY)
+                    {
+                        Destroy(timing.FallingView.gameObject);
+                        timing.FallingView = null;
+                    }
+                }
             }
-        }
 
-        private void InitializeNotes()
-        {
-            if (_notes == null) return;
-            
-            foreach (var note in _notes)
-                note.SetColor(_colorScheme.DefaultColor);
-        }
+            if (_currentNoteIndex >= _noteTimings.Count) return;
 
-        private void HighlightAndAnimateCurrentNote()
-        {
-            if (_notes == null) return;
+            var currentTiming = _noteTimings[_currentNoteIndex];
 
-            while (_currentNoteIndex < _notes.Count && _notes[_currentNoteIndex].IsRest)
-                _currentNoteIndex++;
-
-            if (_currentNoteIndex >= _notes.Count) return;
-
-            var currentNote = _notes[_currentNoteIndex];
-            var baseName = MidiHelper.MidiToBaseNoteName(currentNote.MidiNote);
-            var targetColor = _colorScheme.GetColorFromName(baseName);
-            
-            currentNote.SetColor(targetColor);
-            currentNote.StartIdleAnimation();
-
-            if (KeyView.ActiveKeys.TryGetValue(currentNote.MidiNote, out var key))
+            if (currentTiming.IsRest)
             {
-                var realDurationInSeconds = currentNote.Duration * _secondsPerBeat;
+                if (_songTime >= currentTiming.HitTime + currentTiming.Duration)
+                {
+                    currentTiming.IsProcessed = true;
+                    AdvanceToNextNote();
+                }
                 
-                key.ExpectedDuration = realDurationInSeconds;
-                key.IsExpectedNote = true;
-                key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
+                return;
+            }
+
+            if (_songTime > currentTiming.HitTime + _hitWindow)
+            {
+                currentTiming.IsProcessed = true;
+                
+                if (currentTiming.FallingView != null)
+                    currentTiming.FallingView.HandleHit();
+                    
+                ResetCurrentNoteHighlight(currentTiming);
+                AdvanceToNextNote();
             }
         }
 
         private void HandleNotePlayed(int midiNote)
         {
-            if (_notes == null || _currentNoteIndex >= _notes.Count) return;
+            if (_currentNoteIndex >= _noteTimings.Count) return;
 
-            var currentNote = _notes[_currentNoteIndex];
-            if (currentNote.IsRest) return;
+            var currentTiming = _noteTimings[_currentNoteIndex];
+            
+            if (currentTiming.IsRest || currentTiming.IsProcessed) return;
 
-            if (currentNote.MidiNote == midiNote)
+            if (!_hasGameStarted)
             {
-                if (!_hasGameStarted)
-                    StartGame();
-
-                currentNote.StopIdleAnimation();
-                currentNote.SetColor(_colorScheme.DefaultColor);
-                
-                if (KeyView.ActiveKeys.TryGetValue(midiNote, out var key))
+                if (currentTiming.MidiNote == midiNote)
                 {
-                    key.StopGlow();
-                    key.IsExpectedNote = false;
+                    _hasGameStarted = true;
+                    _songTime = 0f;
+                    ProcessHit(currentTiming);
                 }
                 
-                HandleFallingNoteHit();
-                AdvanceToNextNote();
+                return;
             }
+
+            if (currentTiming.MidiNote == midiNote && Mathf.Abs(_songTime - currentTiming.HitTime) <= _hitWindow)
+                ProcessHit(currentTiming);
         }
 
-        private void HandleFallingNoteHit()
+        private void ProcessHit(NoteTiming timing)
         {
-            if (_activeFallingNotes.Count == 0) return;
+            timing.IsProcessed = true;
             
-            var hitNote = _activeFallingNotes[0];
-            if (hitNote != null)
-                hitNote.HandleHit();
+            if (timing.FallingView != null)
+                timing.FallingView.HandleHit();
                 
-            _activeFallingNotes.RemoveAt(0);
+            ResetCurrentNoteHighlight(timing);
+            AdvanceToNextNote();
+        }
+
+        private void ResetCurrentNoteHighlight(NoteTiming timing)
+        {
+            if (_sheetNoteViews != null && timing.SheetIndex < _sheetNoteViews.Count)
+            {
+                var view = _sheetNoteViews[timing.SheetIndex];
+                view.StopIdleAnimation();
+                view.SetColor(_colorScheme.DefaultColor);
+            }
+            
+            if (KeyView.ActiveKeys.TryGetValue(timing.MidiNote, out var key))
+            {
+                key.StopGlow();
+                key.IsExpectedNote = false;
+            }
         }
 
         private void AdvanceToNextNote()
         {
             _currentNoteIndex++;
-            HighlightAndAnimateCurrentNote();
+            HighlightCurrentExpectedNote();
+        }
+
+        private void HighlightCurrentExpectedNote()
+        {
+            if (_currentNoteIndex >= _noteTimings.Count) return;
+
+            var currentTiming = _noteTimings[_currentNoteIndex];
+            
+            if (currentTiming.IsRest)
+            {
+                AdvanceToNextNote();
+                return;
+            }
+
+            if (_sheetNoteViews != null && currentTiming.SheetIndex < _sheetNoteViews.Count)
+            {
+                var view = _sheetNoteViews[currentTiming.SheetIndex];
+                var baseName = MidiHelper.MidiToBaseNoteName(currentTiming.MidiNote);
+                var targetColor = _colorScheme.GetColorFromName(baseName);
+                
+                view.SetColor(targetColor);
+                view.StartIdleAnimation();
+            }
+
+            if (KeyView.ActiveKeys.TryGetValue(currentTiming.MidiNote, out var key))
+            {
+                key.ExpectedDuration = currentTiming.Duration;
+                key.IsExpectedNote = true;
+                key.StartGlow(_glowDuration, _minGlowIntensity, _maxGlowIntensity);
+            }
         }
     }
 }
