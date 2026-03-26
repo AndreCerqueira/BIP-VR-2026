@@ -11,6 +11,7 @@ namespace Project.Runtime.Scripts.Music.Utils
         [SerializeField] private SheetMusicSO _musicData;
 
         private const int C3 = 48;
+        private const int D3 = 50;
         private const int E3 = 52;
         private const int F3 = 53;
         private const int G3 = 55;
@@ -28,7 +29,6 @@ namespace Project.Runtime.Scripts.Music.Utils
         private const float QUARTER = 1f;
         private const float HALF = 2f;
         private const float WHOLE = 4f;
-        private const float DEFAULT_REST = 0.5f;
 
         [Button("Generate: Twinkle Twinkle")]
         public void GenerateTwinkleTwinkle()
@@ -80,8 +80,7 @@ namespace Project.Runtime.Scripts.Music.Utils
                 new SheetNote(C4, HALF)
             });
 
-            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
-            _musicData.GenerateMeasures(spacedNotes);
+            _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
         }
 
@@ -123,8 +122,7 @@ namespace Project.Runtime.Scripts.Music.Utils
                 new SheetNote(C4, WHOLE)
             });
 
-            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
-            _musicData.GenerateMeasures(spacedNotes);
+            _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
         }
 
@@ -151,8 +149,7 @@ namespace Project.Runtime.Scripts.Music.Utils
             allNotes.AddRange(partA);
             allNotes.AddRange(new[] { new SheetNote(D4, HALF), new SheetNote(C4, HALF) });
 
-            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
-            _musicData.GenerateMeasures(spacedNotes);
+            _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
         }
 
@@ -203,25 +200,62 @@ namespace Project.Runtime.Scripts.Music.Utils
                 new SheetNote(G3, HALF, false, true), new SheetNote(B3, QUARTER), new SheetNote(D4, QUARTER)
             });
 
-            var spacedNotes = InsertRests(allNotes, DEFAULT_REST);
-            _musicData.GenerateMeasures(spacedNotes);
+            _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
         }
 
-        private List<SheetNote> InsertRests(List<SheetNote> originalNotes, float restDuration)
+        [Button("Generate: Simple Two Hands Exercise")]
+        public void GenerateSimpleTwoHandsExercise()
         {
-            var notesWithRests = new List<SheetNote>();
-            
-            for (var i = 0; i < originalNotes.Count; i++)
+            if (_musicData == null) return;
+
+            var allNotes = new List<SheetNote>();
+
+            allNotes.AddRange(new[]
             {
-                var note = originalNotes[i];
-                notesWithRests.Add(note);
-                
-                if (!note.PlayWithNext)
-                    notesWithRests.Add(new SheetNote(0, restDuration, true));
-            }
-            
-            return notesWithRests;
+                new SheetNote(C3, QUARTER, false, true), new SheetNote(C4, QUARTER),
+                new SheetNote(0, QUARTER, true),
+                new SheetNote(E4, QUARTER)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(G3, QUARTER, false, true), new SheetNote(D4, QUARTER),
+                new SheetNote(0, QUARTER, true),
+                new SheetNote(F4, QUARTER)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(C3, HALF, false, true), new SheetNote(E4, HALF)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(0, WHOLE, true)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(F3, QUARTER, false, true), new SheetNote(A4, QUARTER),
+                new SheetNote(0, QUARTER, true),
+                new SheetNote(G4, QUARTER)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(G3, QUARTER, false, true), new SheetNote(B4, QUARTER),
+                new SheetNote(0, QUARTER, true),
+                new SheetNote(D4, QUARTER)
+            });
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(C3, HALF, false, true), new SheetNote(G3, HALF, false, true), new SheetNote(C4, HALF)
+            });
+
+            _musicData.GenerateMeasures(allNotes);
+            SaveMusicData();
         }
 
         private void SaveMusicData()

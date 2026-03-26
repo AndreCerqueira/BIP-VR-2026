@@ -24139,6 +24139,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _halfRest
+      value: 
+      objectReference: {fileID: 21300000, guid: fcb69e3c2d331684aa163a5a4faf2a3d, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _wholeRest
+      value: 
+      objectReference: {fileID: 21300000, guid: bde6354d50641794aadbbb7a14e4778f, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _eighthNote
+      value: 
+      objectReference: {fileID: 21300000, guid: cff3d163a62f51b41afab5b72e9c474e, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _eighthRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 86510269f54466749934554ab38e01fe, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _quarterRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 3410ca28ac6b1d340b3e4ef774bfe01d, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _sixteenthNote
+      value: 
+      objectReference: {fileID: 21300000, guid: f8c93eddba675084289d1cd8127bd1bb, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _sixteenthRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 99f2380b9dd7e59469e4449a342954a1, type: 3}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _bpm
       value: 100

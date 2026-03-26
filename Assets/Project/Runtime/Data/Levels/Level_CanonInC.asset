@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82f542e50514a96831762723389b036, type: 3}
   m_Name: Level_CanonInC
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Leveling.LevelDataSO
-  _levelName: CanonInC
-  _difficulty: 4
+  _levelName: Canon In C
+  _difficulty: 5
   _pianoRange: 2
   _sheetMusic: {fileID: 11400000, guid: 620c2d28835d63643bbc2c1c27a908ea, type: 2}

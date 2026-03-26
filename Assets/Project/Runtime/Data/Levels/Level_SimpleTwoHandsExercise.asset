@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d82f542e50514a96831762723389b036, type: 3}
-  m_Name: Level_MaryHadALittleLamb
+  m_Name: Level_SimpleTwoHandsExercise
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Leveling.LevelDataSO
-  _levelName: Mary Had a Little Lamb
-  _difficulty: 2
-  _pianoRange: 0
-  _sheetMusic: {fileID: 11400000, guid: d7dc40e44b10e254e80573c9eee117ac, type: 2}
+  _levelName: Simple Two Hands Exercise
+  _difficulty: 4
+  _pianoRange: 2
+  _sheetMusic: {fileID: 11400000, guid: 620c2d28835d63643bbc2c1c27a908ea, type: 2}
