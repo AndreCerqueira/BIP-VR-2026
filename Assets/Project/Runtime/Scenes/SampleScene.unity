@@ -580,10 +580,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2325922202316458841, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: _noteSpacing
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 4505732234061439992, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_Camera
       value: 
@@ -591,26 +587,6 @@ PrefabInstance:
     - target: {fileID: 4767192391331464481, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_Name
       value: PF_Piano
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866984458178071638, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: _levels.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866984458178071638, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: '_levels.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ec9d84ace91ab824190f5595d324deb5, type: 2}
-    - target: {fileID: 5866984458178071638, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: '_levels.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7dd43ef472018714a981f33fca048550, type: 2}
-    - target: {fileID: 6340914949887938274, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.800003
-      objectReference: {fileID: 0}
-    - target: {fileID: 6340914949887938274, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -74.2
       objectReference: {fileID: 0}
     - target: {fileID: 6440758276852320545, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_LocalPosition.x
