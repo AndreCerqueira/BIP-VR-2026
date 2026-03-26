@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Project.Runtime.Scripts.Leveling;
 using Project.Runtime.Scripts.Music.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -39,6 +40,16 @@ namespace Project.Runtime.Scripts.Piano
             LoadOneOctave();
         }
 
+        public void LoadRange(PianoRangeMode mode)
+        {
+            switch(mode)
+            {
+                case PianoRangeMode.OneOctave: LoadOneOctave(); break;
+                case PianoRangeMode.TwoOctaves: LoadTwoOctaves(); break;
+                case PianoRangeMode.TwoHands: LoadTwoHands(); break;
+            }
+        }
+
         [Button("Load One Octave (C4 - B4)")]
         public void LoadOneOctave()
         {
@@ -49,6 +60,12 @@ namespace Project.Runtime.Scripts.Piano
         public void LoadTwoOctaves()
         {
             UpdateHighlights(60, 83);
+        }
+
+        [Button("Load Two Hands (C3 - B4)")]
+        public void LoadTwoHands()
+        {
+            UpdateHighlights(48, 71);
         }
 
         private void BuildKeys(Transform parent, int expectedCount, string[] names, int[] offsets, int notesPerOctave, bool isWhiteKey)

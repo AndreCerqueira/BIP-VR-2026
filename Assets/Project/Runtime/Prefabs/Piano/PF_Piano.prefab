@@ -10424,7 +10424,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.7
+  m_FillAmount: 0.75
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -14990,7 +14990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.800003, y: -33.6}
+  m_AnchoredPosition: {x: 1.800003, y: -74.2}
   m_SizeDelta: {x: 492.8, y: 404.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2389062439382351717
@@ -15020,6 +15020,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe231d3f76016384b879ad879b6b71fa, type: 2}
   - {fileID: 11400000, guid: 2baa763c4417ce849a29e1f39c785fb9, type: 2}
   - {fileID: 11400000, guid: 5b4f471224ac6a94fbefdbf297fd1be8, type: 2}
+  - {fileID: 11400000, guid: ec9d84ace91ab824190f5595d324deb5, type: 2}
+  - {fileID: 11400000, guid: 7dd43ef472018714a981f33fca048550, type: 2}
 --- !u!114 &2952021417409518202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19479,7 +19481,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.7
+  m_FillAmount: 0.75
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -24138,6 +24140,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _halfRest
+      value: 
+      objectReference: {fileID: 21300000, guid: fcb69e3c2d331684aa163a5a4faf2a3d, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _wholeRest
+      value: 
+      objectReference: {fileID: 21300000, guid: bde6354d50641794aadbbb7a14e4778f, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _eighthNote
+      value: 
+      objectReference: {fileID: 21300000, guid: cff3d163a62f51b41afab5b72e9c474e, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _eighthRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 86510269f54466749934554ab38e01fe, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _quarterRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 3410ca28ac6b1d340b3e4ef774bfe01d, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _sixteenthNote
+      value: 
+      objectReference: {fileID: 21300000, guid: f8c93eddba675084289d1cd8127bd1bb, type: 3}
+    - target: {fileID: 7006319416695769290, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _sixteenthRest
+      value: 
+      objectReference: {fileID: 21300000, guid: 99f2380b9dd7e59469e4449a342954a1, type: 3}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _bpm
       value: 100
@@ -24146,6 +24176,14 @@ PrefabInstance:
       propertyPath: _scoreText
       value: 
       objectReference: {fileID: 7471435300150525776}
+    - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _noteSpacing
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
+      propertyPath: _pianoBuilder
+      value: 
+      objectReference: {fileID: 3898109980810378608}
     - target: {fileID: 7913270470247914119, guid: bf31e1e404256334f9e1e6fd8d2d8112, type: 3}
       propertyPath: _sheetContainer
       value: 

@@ -10,56 +10,55 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c10e7055bf9b4858a15a3b14abe8e934, type: 3}
-  m_Name: MaryHadALittleLamb
+  m_Name: SimpleTwoHandsExercise
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.SheetMusicSO
-  _title: Mary Had a Little Lamb
+  _title: Simple Two Hands Exercise
   _beatsPerMeasure: 4
   _measures:
   - _notes:
-    - _midiNote: 64
-      _duration: 1
+    - _midiNote: 48
+      _duration: 2
       _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
+      _playWithNext: 1
     - _midiNote: 60
       _duration: 1
       _isRest: 0
       _playWithNext: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 55
+      _duration: 2
+      _isRest: 0
+      _playWithNext: 1
     - _midiNote: 62
       _duration: 1
       _isRest: 0
       _playWithNext: 0
+    - _midiNote: 65
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
   - _notes:
-    - _midiNote: 64
-      _duration: 1
+    - _midiNote: 48
+      _duration: 4
       _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
+      _playWithNext: 1
     - _midiNote: 64
       _duration: 2
       _isRest: 0
       _playWithNext: 0
-  - _notes:
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
+    - _midiNote: 60
       _duration: 2
       _isRest: 0
       _playWithNext: 0
   - _notes:
-    - _midiNote: 64
+    - _midiNote: 53
+      _duration: 2
+      _isRest: 0
+      _playWithNext: 1
+    - _midiNote: 69
       _duration: 1
       _isRest: 0
       _playWithNext: 0
@@ -67,20 +66,11 @@ MonoBehaviour:
       _duration: 1
       _isRest: 0
       _playWithNext: 0
-    - _midiNote: 67
+    - _midiNote: 55
       _duration: 2
       _isRest: 0
-      _playWithNext: 0
-  - _notes:
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 60
+      _playWithNext: 1
+    - _midiNote: 71
       _duration: 1
       _isRest: 0
       _playWithNext: 0
@@ -89,40 +79,10 @@ MonoBehaviour:
       _isRest: 0
       _playWithNext: 0
   - _notes:
-    - _midiNote: 64
-      _duration: 1
+    - _midiNote: 48
+      _duration: 4
       _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-  - _notes:
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 64
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 62
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-  - _notes:
+      _playWithNext: 1
     - _midiNote: 60
       _duration: 4
       _isRest: 0

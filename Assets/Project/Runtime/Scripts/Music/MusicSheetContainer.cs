@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Project.Runtime.Scripts.Music.Data;
-using Project.Runtime.Scripts.UI;
 using UnityEngine;
 
 namespace Project.Runtime.Scripts.Music

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Project.Runtime.Scripts.Music;
-using UnityEngine;
 using Project.Runtime.Scripts.Music.Data;
 using Project.Runtime.Scripts.Music.Utils;
 using TMPro;
+using UnityEngine;
 
-namespace Project.Runtime.Scripts.UI
+namespace Project.Runtime.Scripts.Music
 {
     public class StaffView : MonoBehaviour
     {
@@ -20,19 +19,30 @@ namespace Project.Runtime.Scripts.UI
         [SerializeField] private float _measureSpacingX = 1.0f;
         [SerializeField] private float _stepY = 0.15f;
 
-        [Header("Alignment Offsets")]
-        [SerializeField] private float _startXOffset = 0f;
-        [SerializeField] private float _startYOffset = 0f;
-        [SerializeField] private float _barLineOffsetY = 0f;
+        [Header("Treble Staff (Clave de Sol)")]
+        [SerializeField] private float _trebleStartYOffset = 0f;
+        [SerializeField] private float _trebleBarLineOffsetY = -0.5f;
+        [SerializeField] private float _trebleLabelOffsetY = 1.5f;
 
-        [Header("Label Settings")]
-        [SerializeField] private float _labelFixedYOffset = 2.0f;
+        [Header("Bass Staff (Clave de Fá)")]
+        [SerializeField] private float _bassStartYOffset = -3f;
+        [SerializeField] private float _bassBarLineOffsetY = -3.5f;
+        [SerializeField] private float _bassLabelOffsetY = -1.5f;
+
+        [Header("Global Alignment")]
+        [SerializeField] private float _startXOffset = 0f;
+        [SerializeField] private float _globalYOffset = 0f;
 
         [Header("Note Sizing")]
         [SerializeField] private float _noteWidthMultiplier = 1f;
         [SerializeField] private float _noteHeightMultiplier = 1f;
 
-        private const int REFERENCE_MIDI_C4 = 60;
+        private const int MIDI_C4 = 60;
+        private const int REFERENCE_C4_STEP = 28;
+        private const int NOTES_PER_OCTAVE = 12;
+        private const int STEPS_PER_OCTAVE = 7;
+        
+        private readonly int[] _scaleSteps = { 0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6 };
 
         public IReadOnlyList<SheetNoteView> SetupStaff(IEnumerable<Measure> measures, int beatsPerMeasure)
         {
@@ -41,6 +51,7 @@ namespace Project.Runtime.Scripts.UI
             if (beatsPerMeasure <= 0)
                 beatsPerMeasure = 4;
 
+            var isGrandStaff = CheckIfGrandStaff(measures);
             var currentX = _startXOffset;
 
             foreach (var measure in measures)
@@ -57,16 +68,31 @@ namespace Project.Runtime.Scripts.UI
                     if (noteView != null)
                         spawnedNotes.Add(noteView);
                         
-                    currentBeat += note.Duration;
+                    if (!note.PlayWithNext)
+                        currentBeat += note.Duration;
                 }
                 
                 currentX = measureStartX + measureWidth;
                 
-                CreateBarLine(currentX);
+                CreateBarLines(currentX, isGrandStaff);
                 currentX += _measureSpacingX;
             }
             
             return spawnedNotes;
+        }
+
+        private bool CheckIfGrandStaff(IEnumerable<Measure> measures)
+        {
+            foreach (var measure in measures)
+            {
+                foreach (var note in measure.Notes)
+                {
+                    if (!note.IsRest && note.MidiNote < MIDI_C4)
+                        return true;
+                }
+            }
+            
+            return false;
         }
 
         private SheetNoteView CreateNote(SheetNote note, float xPos)
@@ -81,7 +107,10 @@ namespace Project.Runtime.Scripts.UI
             TMP_Text labelComponent = null;
 
             if (!note.IsRest && _labelPrefab != null)
-                labelComponent = CreatePitchLabel(xPos, note.MidiNote);
+            {
+                var isTreble = note.MidiNote >= MIDI_C4;
+                labelComponent = CreatePitchLabel(xPos, note.MidiNote, isTreble);
+            }
 
             if (view != null)
                 view.Initialize(note, labelComponent, _noteWidthMultiplier, _noteHeightMultiplier);
@@ -89,11 +118,15 @@ namespace Project.Runtime.Scripts.UI
             return view;
         }
 
-        private TMP_Text CreatePitchLabel(float xPos, int midiNote)
+        private TMP_Text CreatePitchLabel(float xPos, int midiNote, bool isTreble)
         {
             var labelObj = Instantiate(_labelPrefab, _container);
             
-            var yPos = _startYOffset + _labelFixedYOffset;
+            var anchorY = isTreble ? _trebleStartYOffset : _bassStartYOffset;
+            var labelOffset = isTreble ? _trebleLabelOffsetY : _bassLabelOffsetY;
+            
+            var yPos = anchorY + _globalYOffset + labelOffset;
+            
             labelObj.transform.localPosition = new Vector3(xPos, yPos, 0f);
 
             var textComponent = labelObj.GetComponentInChildren<TextMeshProUGUI>();
@@ -103,31 +136,38 @@ namespace Project.Runtime.Scripts.UI
             return textComponent;
         }
 
-        private void CreateBarLine(float xPos)
+        private void CreateBarLines(float xPos, bool isGrandStaff)
         {
             if (_barLinePrefab == null) return;
 
-            var barObj = Instantiate(_barLinePrefab, _container);
-            var yPos = _startYOffset + _barLineOffsetY;
-            barObj.transform.localPosition = new Vector3(xPos, yPos, 0f);
+            var trebleBar = Instantiate(_barLinePrefab, _container);
+            trebleBar.transform.localPosition = new Vector3(xPos, _trebleBarLineOffsetY + _globalYOffset, 0f);
+
+            if (isGrandStaff)
+            {
+                var bassBar = Instantiate(_barLinePrefab, _container);
+                bassBar.transform.localPosition = new Vector3(xPos, _bassBarLineOffsetY + _globalYOffset, 0f);
+            }
         }
 
         private float CalculateNoteY(SheetNote note)
         {
-            if (note.IsRest) return _startYOffset;
+            var isTreble = note.IsRest || note.MidiNote >= MIDI_C4;
+            var anchorY = isTreble ? _trebleStartYOffset : _bassStartYOffset;
             
-            var midiDiff = note.MidiNote - REFERENCE_MIDI_C4;
-            return _startYOffset + (ConvertMidiToStaffStep(midiDiff) * _stepY);
+            var stepOffset = note.IsRest ? 0f : (ConvertMidiToStaffStep(note.MidiNote) * _stepY);
+            
+            return anchorY + _globalYOffset + stepOffset;
         }
 
-        private int ConvertMidiToStaffStep(int midiDiff)
+        private int ConvertMidiToStaffStep(int midiNote)
         {
-            var octave = midiDiff / 12;
-            var noteInOctave = Mathf.Abs(midiDiff % 12);
-            var steps = new[] { 0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6 };
-            var baseStep = (octave * 7) + steps[noteInOctave];
+            var octave = (midiNote / NOTES_PER_OCTAVE) - 1;
+            var noteIndex = midiNote % NOTES_PER_OCTAVE;
             
-            return midiDiff < 0 ? -baseStep : baseStep;
+            var absoluteStep = (octave * STEPS_PER_OCTAVE) + _scaleSteps[noteIndex];
+            
+            return absoluteStep - REFERENCE_C4_STEP;
         }
     }
 }
