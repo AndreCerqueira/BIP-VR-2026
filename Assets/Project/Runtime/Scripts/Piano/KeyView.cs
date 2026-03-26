@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Project.Runtime.Scripts.Music;
-using Project.Runtime.Scripts.UI;
 using TMPro;
 using UnityEngine;
 
