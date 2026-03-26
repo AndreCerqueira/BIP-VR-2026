@@ -153,52 +153,32 @@ namespace Project.Runtime.Scripts.Music.Utils
             SaveMusicData();
         }
 
-        [Button("Generate: Canon in C (Two Hands)")]
+        [Button("Generate: Canon in C")]
         public void GenerateCanonInC()
         {
             if (_musicData == null) return;
 
             var allNotes = new List<SheetNote>();
 
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(C3, HALF, false, true), new SheetNote(E4, QUARTER), new SheetNote(C4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(G3, HALF, false, true), new SheetNote(D4, QUARTER), new SheetNote(B3, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(A3, HALF, false, true), new SheetNote(C4, QUARTER), new SheetNote(A4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(E3, HALF, false, true), new SheetNote(B3, QUARTER), new SheetNote(G4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(F3, HALF, false, true), new SheetNote(A3, QUARTER), new SheetNote(F4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(C3, HALF, false, true), new SheetNote(G3, QUARTER), new SheetNote(E4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(F3, HALF, false, true), new SheetNote(A3, QUARTER), new SheetNote(C4, QUARTER)
-            });
-
-            allNotes.AddRange(new[]
-            {
-                new SheetNote(G3, HALF, false, true), new SheetNote(B3, QUARTER), new SheetNote(D4, QUARTER)
-            });
+            // C Major
+            allNotes.AddRange(new[] { new SheetNote(C3, QUARTER), new SheetNote(G3, QUARTER), new SheetNote(E4, QUARTER), new SheetNote(C4, QUARTER) });
+            // G Major
+            allNotes.AddRange(new[] { new SheetNote(G3, QUARTER), new SheetNote(B3, QUARTER), new SheetNote(D4, QUARTER), new SheetNote(B3, QUARTER) });
+            // A Minor
+            allNotes.AddRange(new[] { new SheetNote(A3, QUARTER), new SheetNote(E4, QUARTER), new SheetNote(C4, QUARTER), new SheetNote(A3, QUARTER) });
+            // E Minor
+            allNotes.AddRange(new[] { new SheetNote(E3, QUARTER), new SheetNote(B3, QUARTER), new SheetNote(G3, QUARTER), new SheetNote(E3, QUARTER) });
+            // F Major
+            allNotes.AddRange(new[] { new SheetNote(F3, QUARTER), new SheetNote(C4, QUARTER), new SheetNote(A3, QUARTER), new SheetNote(F3, QUARTER) });
+            // C Major
+            allNotes.AddRange(new[] { new SheetNote(C3, QUARTER), new SheetNote(G3, QUARTER), new SheetNote(E3, QUARTER), new SheetNote(C3, QUARTER) });
+            // F Major
+            allNotes.AddRange(new[] { new SheetNote(F3, QUARTER), new SheetNote(A3, QUARTER), new SheetNote(C4, QUARTER), new SheetNote(A3, QUARTER) });
+            // G Major
+            allNotes.AddRange(new[] { new SheetNote(G3, QUARTER), new SheetNote(B3, QUARTER), new SheetNote(D4, QUARTER), new SheetNote(G3, QUARTER) });
+            
+            // Fim a terminar na nota base
+            allNotes.AddRange(new[] { new SheetNote(C3, QUARTER), new SheetNote(G3, QUARTER), new SheetNote(C4, HALF) });
 
             _musicData.GenerateMeasures(allNotes);
             SaveMusicData();
@@ -213,45 +193,55 @@ namespace Project.Runtime.Scripts.Music.Utils
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(C3, QUARTER, false, true), new SheetNote(C4, QUARTER),
-                new SheetNote(0, QUARTER, true),
-                new SheetNote(E4, QUARTER)
+                new SheetNote(C3, HALF, false, true), new SheetNote(C4, QUARTER), new SheetNote(E4, QUARTER),
+                new SheetNote(G3, HALF, false, true), new SheetNote(D4, QUARTER), new SheetNote(F4, QUARTER)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(G3, QUARTER, false, true), new SheetNote(D4, QUARTER),
-                new SheetNote(0, QUARTER, true),
-                new SheetNote(F4, QUARTER)
+                new SheetNote(C3, WHOLE, false, true), new SheetNote(E4, HALF), new SheetNote(C4, HALF)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(C3, HALF, false, true), new SheetNote(E4, HALF)
+                new SheetNote(F3, HALF, false, true), new SheetNote(A4, QUARTER), new SheetNote(G4, QUARTER),
+                new SheetNote(G3, HALF, false, true), new SheetNote(B4, QUARTER), new SheetNote(D4, QUARTER)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(0, WHOLE, true)
+                new SheetNote(C3, WHOLE, false, true), new SheetNote(C4, WHOLE)
+            });
+
+            _musicData.GenerateMeasures(allNotes);
+            SaveMusicData();
+        }
+
+        [Button("Generate: Alternating Hands")]
+        public void GenerateAlternatingHands()
+        {
+            if (_musicData == null) return;
+
+            var allNotes = new List<SheetNote>();
+
+            allNotes.AddRange(new[]
+            {
+                new SheetNote(C3, QUARTER), new SheetNote(E4, QUARTER), new SheetNote(G3, QUARTER), new SheetNote(C4, QUARTER)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(F3, QUARTER, false, true), new SheetNote(A4, QUARTER),
-                new SheetNote(0, QUARTER, true),
-                new SheetNote(G4, QUARTER)
+                new SheetNote(F3, QUARTER), new SheetNote(C4, QUARTER), new SheetNote(A3, QUARTER), new SheetNote(F4, QUARTER)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(G3, QUARTER, false, true), new SheetNote(B4, QUARTER),
-                new SheetNote(0, QUARTER, true),
-                new SheetNote(D4, QUARTER)
+                new SheetNote(G3, QUARTER), new SheetNote(D4, QUARTER), new SheetNote(B3, QUARTER), new SheetNote(G4, QUARTER)
             });
 
             allNotes.AddRange(new[]
             {
-                new SheetNote(C3, HALF, false, true), new SheetNote(G3, HALF, false, true), new SheetNote(C4, HALF)
+                new SheetNote(C3, HALF), new SheetNote(C4, HALF)
             });
 
             _musicData.GenerateMeasures(allNotes);

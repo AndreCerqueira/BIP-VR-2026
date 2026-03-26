@@ -30,6 +30,7 @@ namespace Project.Runtime.Scripts.Music
         [Header("Rhythm Settings")]
         [SerializeField] private float _fallSpeedMultiplier = 1.0f;
         [SerializeField, Range(0.1f, 1f)] private float _noteVisualRatio = 0.8f;
+        [SerializeField] private float _noteSpacing = 0.05f;
 
         private class NoteTiming
         {
@@ -154,14 +155,15 @@ namespace Project.Runtime.Scripts.Music
             {
                 foreach (var note in measure.Notes)
                 {
-                    var durationInSeconds = note.Duration * _secondsPerBeat;
+                    var fullDurationInSeconds = note.Duration * _secondsPerBeat;
+                    var activeDuration = note.IsRest ? fullDurationInSeconds : Mathf.Max(0.01f, fullDurationInSeconds - _noteSpacing);
 
                     var timing = new NoteTiming
                     {
                         SheetIndex = sheetIndex,
                         MidiNote = note.MidiNote,
                         HitTime = currentTime,
-                        Duration = durationInSeconds,
+                        Duration = activeDuration,
                         IsRest = note.IsRest,
                         IsProcessed = false
                     };
@@ -177,7 +179,7 @@ namespace Project.Runtime.Scripts.Music
                             var color = _colorScheme.GetColorFromName(baseName);
                             
                             var targetY = key.transform.position.y;
-                            var visualLength = (durationInSeconds * _noteVisualRatio) * _fallSpeedMultiplier;
+                            var visualLength = (activeDuration * _noteVisualRatio) * _fallSpeedMultiplier;
                             
                             fallingNote.Initialize(key.transform, currentTime, visualLength, color, targetY);
                             fallingNote.UpdatePosition(0f, _fallSpeedMultiplier);
@@ -189,7 +191,7 @@ namespace Project.Runtime.Scripts.Music
                     _noteTimings.Add(timing);
 
                     if (!note.PlayWithNext)
-                        currentTime += durationInSeconds;
+                        currentTime += fullDurationInSeconds;
                         
                     sheetIndex++;
                 }

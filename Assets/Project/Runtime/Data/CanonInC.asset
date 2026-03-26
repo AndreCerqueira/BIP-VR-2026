@@ -17,9 +17,13 @@ MonoBehaviour:
   _measures:
   - _notes:
     - _midiNote: 48
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
+    - _midiNote: 55
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
     - _midiNote: 64
       _duration: 1
       _isRest: 0
@@ -28,10 +32,15 @@ MonoBehaviour:
       _duration: 1
       _isRest: 0
       _playWithNext: 0
+  - _notes:
     - _midiNote: 55
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
+    - _midiNote: 59
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
     - _midiNote: 62
       _duration: 1
       _isRest: 0
@@ -42,59 +51,77 @@ MonoBehaviour:
       _playWithNext: 0
   - _notes:
     - _midiNote: 57
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
+    - _midiNote: 64
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
     - _midiNote: 60
       _duration: 1
       _isRest: 0
       _playWithNext: 0
-    - _midiNote: 69
+    - _midiNote: 57
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+  - _notes:
+    - _midiNote: 52
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 59
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 55
       _duration: 1
       _isRest: 0
       _playWithNext: 0
     - _midiNote: 52
-      _duration: 2
-      _isRest: 0
-      _playWithNext: 1
-    - _midiNote: 59
-      _duration: 1
-      _isRest: 0
-      _playWithNext: 0
-    - _midiNote: 67
       _duration: 1
       _isRest: 0
       _playWithNext: 0
   - _notes:
     - _midiNote: 53
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
+    - _midiNote: 60
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
     - _midiNote: 57
       _duration: 1
       _isRest: 0
       _playWithNext: 0
-    - _midiNote: 65
+    - _midiNote: 53
       _duration: 1
       _isRest: 0
       _playWithNext: 0
+  - _notes:
     - _midiNote: 48
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
     - _midiNote: 55
       _duration: 1
       _isRest: 0
       _playWithNext: 0
-    - _midiNote: 64
+    - _midiNote: 52
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 48
       _duration: 1
       _isRest: 0
       _playWithNext: 0
   - _notes:
     - _midiNote: 53
-      _duration: 2
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
     - _midiNote: 57
       _duration: 1
       _isRest: 0
@@ -103,15 +130,37 @@ MonoBehaviour:
       _duration: 1
       _isRest: 0
       _playWithNext: 0
-    - _midiNote: 55
-      _duration: 2
+    - _midiNote: 57
+      _duration: 1
       _isRest: 0
-      _playWithNext: 1
+      _playWithNext: 0
+  - _notes:
+    - _midiNote: 55
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
     - _midiNote: 59
       _duration: 1
       _isRest: 0
       _playWithNext: 0
     - _midiNote: 62
       _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 55
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+  - _notes:
+    - _midiNote: 48
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 55
+      _duration: 1
+      _isRest: 0
+      _playWithNext: 0
+    - _midiNote: 60
+      _duration: 2
       _isRest: 0
       _playWithNext: 0

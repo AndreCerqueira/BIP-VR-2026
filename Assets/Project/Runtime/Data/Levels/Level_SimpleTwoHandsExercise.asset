@@ -15,4 +15,4 @@ MonoBehaviour:
   _levelName: Simple Two Hands Exercise
   _difficulty: 4
   _pianoRange: 2
-  _sheetMusic: {fileID: 11400000, guid: 620c2d28835d63643bbc2c1c27a908ea, type: 2}
+  _sheetMusic: {fileID: 11400000, guid: 489db45dee03b3548b941b0af433444f, type: 2}

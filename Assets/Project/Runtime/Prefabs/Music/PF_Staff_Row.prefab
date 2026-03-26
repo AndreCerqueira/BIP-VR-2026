@@ -97,10 +97,11 @@ MonoBehaviour:
   _stepY: 1.53
   _trebleStartYOffset: 6.8
   _trebleBarLineOffsetY: 14
-  _bassStartYOffset: -33
+  _trebleLabelOffsetY: 20
+  _bassStartYOffset: -13.5
   _bassBarLineOffsetY: -18
+  _bassLabelOffsetY: 28
   _startXOffset: -85
   _globalYOffset: 0
-  _labelFixedYOffset: 25
   _noteWidthMultiplier: 1
   _noteHeightMultiplier: 1

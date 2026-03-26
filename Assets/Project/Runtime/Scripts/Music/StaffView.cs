@@ -22,15 +22,16 @@ namespace Project.Runtime.Scripts.Music
         [Header("Treble Staff (Clave de Sol)")]
         [SerializeField] private float _trebleStartYOffset = 0f;
         [SerializeField] private float _trebleBarLineOffsetY = -0.5f;
+        [SerializeField] private float _trebleLabelOffsetY = 1.5f;
 
         [Header("Bass Staff (Clave de Fá)")]
         [SerializeField] private float _bassStartYOffset = -3f;
         [SerializeField] private float _bassBarLineOffsetY = -3.5f;
+        [SerializeField] private float _bassLabelOffsetY = -1.5f;
 
         [Header("Global Alignment")]
         [SerializeField] private float _startXOffset = 0f;
         [SerializeField] private float _globalYOffset = 0f;
-        [SerializeField] private float _labelFixedYOffset = 1.5f;
 
         [Header("Note Sizing")]
         [SerializeField] private float _noteWidthMultiplier = 1f;
@@ -106,7 +107,10 @@ namespace Project.Runtime.Scripts.Music
             TMP_Text labelComponent = null;
 
             if (!note.IsRest && _labelPrefab != null)
-                labelComponent = CreatePitchLabel(xPos, note.MidiNote, yPos);
+            {
+                var isTreble = note.MidiNote >= MIDI_C4;
+                labelComponent = CreatePitchLabel(xPos, note.MidiNote, isTreble);
+            }
 
             if (view != null)
                 view.Initialize(note, labelComponent, _noteWidthMultiplier, _noteHeightMultiplier);
@@ -114,11 +118,15 @@ namespace Project.Runtime.Scripts.Music
             return view;
         }
 
-        private TMP_Text CreatePitchLabel(float xPos, int midiNote, float noteYPos)
+        private TMP_Text CreatePitchLabel(float xPos, int midiNote, bool isTreble)
         {
             var labelObj = Instantiate(_labelPrefab, _container);
             
-            var yPos = noteYPos + _labelFixedYOffset;
+            var anchorY = isTreble ? _trebleStartYOffset : _bassStartYOffset;
+            var labelOffset = isTreble ? _trebleLabelOffsetY : _bassLabelOffsetY;
+            
+            var yPos = anchorY + _globalYOffset + labelOffset;
+            
             labelObj.transform.localPosition = new Vector3(xPos, yPos, 0f);
 
             var textComponent = labelObj.GetComponentInChildren<TextMeshProUGUI>();
