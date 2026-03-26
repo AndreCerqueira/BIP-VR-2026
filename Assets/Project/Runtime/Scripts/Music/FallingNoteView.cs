@@ -12,8 +12,8 @@ namespace Project.Runtime.Scripts.Music
         [SerializeField, Range(0f, 1f)] private float _defaultAlpha = 0.8f;
         [SerializeField, Range(0f, 1f)] private float _hitAlpha = 0.4f;
         
+        private Transform _targetKey;
         private Material _materialInstance;
-        private float _targetY;
         private float _hitTime;
         private string _colorProperty = "_Color";
         
@@ -29,15 +29,12 @@ namespace Project.Runtime.Scripts.Music
                 _colorProperty = "_BaseColor";
         }
 
-        public void Initialize(Transform targetKey, float hitTime, float length, Color color, float targetY)
+        public void Initialize(Transform targetKey, float hitTime, float length, Color color)
         {
             if (targetKey == null) return;
 
+            _targetKey = targetKey;
             _hitTime = hitTime;
-            _targetY = targetY + (length / 2f) + _targetOffset.y;
-            
-            var startPos = targetKey.position + _targetOffset;
-            transform.position = startPos;
             
             var scale = transform.localScale;
             scale.y = length;
@@ -52,12 +49,14 @@ namespace Project.Runtime.Scripts.Music
 
         public void UpdatePosition(float currentSongTime, float fallSpeed)
         {
+            if (_targetKey == null) return;
+
             var timeDifference = _hitTime - currentSongTime;
-            var currentY = _targetY + (timeDifference * fallSpeed);
             
-            var pos = transform.position;
-            pos.y = currentY;
-            transform.position = pos;
+            var targetPos = _targetKey.position + _targetOffset;
+            targetPos.y += (timeDifference * fallSpeed) + (transform.localScale.y / 2f);
+            
+            transform.position = targetPos;
         }
 
         public void HandleHit()
