@@ -2082,6 +2082,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -105.399994
       objectReference: {fileID: 0}
+    - target: {fileID: 931161420509016164, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2038704137721091779, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2101,6 +2105,10 @@ PrefabInstance:
     - target: {fileID: 2038704137721091779, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -35.13333
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581601173383711035, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2809626776442277106, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2122,6 +2130,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -158.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3005323816798109199, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3721244852290244916, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2141,6 +2153,10 @@ PrefabInstance:
     - target: {fileID: 3721244852290244916, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -52.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492150356997372627, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767192391331464481, guid: d67c7709aafc46d4ca8d975df4d69d94, type: 3}
       propertyPath: m_Name
@@ -2233,8 +2249,17 @@ MonoBehaviour:
   referencePoint: {fileID: 1298389130}
   delay: 0.5
   surfaceOffset: 0.02
-  pianoSizeOffset: 0.733
+  pianoSizeOffset: 0.8
   currentRoomOnly: 1
+  alignRotationToTableEdge: 1
+  keyboardYawOffset: 90
+  mrukInitRetries: 20
+  mrukRetryDelay: 0.25
+  placementRetries: 30
+  placementRetryDelay: 0.1
+  allowedSurfaceLabels: 392
+  edgeInsetTowardTableCenter: 0.2
+  edgeCentering: 0.75
 --- !u!1 &1155870288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,7 +3847,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967287
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

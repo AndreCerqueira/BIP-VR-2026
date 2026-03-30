@@ -104,6 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Runtime.Scripts.Music.FallingNoteView
   _renderer: {fileID: 6970567773243564620}
-  _targetOffset: {x: 0, y: 0, z: -0.06}
+  _targetOffset: {x: 0, y: 0, z: 0}
   _defaultAlpha: 0.8
   _hitAlpha: 0.4

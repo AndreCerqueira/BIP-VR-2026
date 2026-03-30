@@ -33,6 +33,7 @@ namespace Project.Runtime.Scripts.Leveling
 
         public LevelDataSO LevelData { get; private set; }
 
+
         private void Awake()
         {
             if (_button != null)
@@ -73,7 +74,7 @@ namespace Project.Runtime.Scripts.Leveling
                 _backgroundImage.DOColor(targetColor, COLOR_TWEEN_DURATION);
         }
 
-        private void HandleClick()
+        public void HandleClick()
         {
             OnRowClicked?.Invoke(this);
         }
