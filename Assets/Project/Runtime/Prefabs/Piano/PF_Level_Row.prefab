@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 4504899595317816337}
   - component: {fileID: 7260183457019365646}
   - component: {fileID: 8302296364292291057}
+  - component: {fileID: 7896153741578243622}
   m_Layer: 5
   m_Name: PF_Level_Row
   m_TagString: Untagged
@@ -435,3 +436,15 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!225 &7896153741578243622
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7184654371186583228}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
