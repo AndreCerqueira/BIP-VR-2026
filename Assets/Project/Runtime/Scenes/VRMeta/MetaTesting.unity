@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 753565759}
   - component: {fileID: 753565758}
   - component: {fileID: 753565757}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ISDK_PokeCanvasInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4062,7 +4062,7 @@ GameObject:
   - component: {fileID: 1807294280}
   - component: {fileID: 1807294279}
   - component: {fileID: 1807294278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
